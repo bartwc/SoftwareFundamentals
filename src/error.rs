@@ -1,6 +1,7 @@
 //! # Error handling types
 //! note that this can be done a lot easier using [thiserror](https://docs.rs/thiserror/)
 //! please check that out if you'd like! You are allowed (and encouraged) to use that.
+#[allow(unused_imports, clippy::single_component_path_imports)]
 use thiserror;
 
 use std::{error::Error, fmt::Display, io};
