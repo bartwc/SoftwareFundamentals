@@ -26,7 +26,7 @@ impl Display for MainError {
 // Mark the fact MainError is an Error
 impl Error for MainError {}
 
-// Allow converting io:Error to MainError, 
+// Allow converting io:Error to MainError,
 // which allows the use of the '?' operator to automatically convert this
 impl From<io::Error> for MainError {
     fn from(value: io::Error) -> Self {
