@@ -53,5 +53,7 @@ fn main() -> Result<(), MainError> {
         },
     ]))?;
 
+    result.generate().expect("error generating graphs")?;
+
     Ok(())
 }
