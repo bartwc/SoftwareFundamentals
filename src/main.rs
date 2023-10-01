@@ -11,15 +11,21 @@ use tudelft_dsmr_output_generator::{GraphBuilder, Graphs, date_to_timestamp, Uni
 /// https://docs.rs/tudelft-dsmr-output-generator/0.1.3/tudelft_dsmr_output_generator/index.html
 mod error;
 
+#[derive(Debug)]
+#[derive(PartialEq)]
 enum Versions {
     V10,
     V12,
 }
+#[derive(Debug)]
+#[derive(PartialEq)]
 enum Extensions {
     Gas,
     Recursive,
     GasRecursive,
 }
+#[derive(Debug)]
+#[derive(PartialEq)]
 enum Keys {
     Start, // 1.1.0
     Date, // 2.1
@@ -529,6 +535,7 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
     //     TimeStamp: Vec::new(),
     // };
     let telegram_version = &input[2..4].to_string();
+    println!("{:?}", telegram_version);
     match telegram_ver(&telegram_version) {
         Ok(Versions::V10) => telegram.Telegram_Version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
         Ok(Versions::V12) => telegram.Telegram_Version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
@@ -807,24 +814,24 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
         println!("The number of values for Event Log Date, Messages and Severity do not match!");
         std::process::exit(42);
     }
-    if telegram.InformationType.contains(&"W".to_string()) && telegram.WaterConsumption.len() > 0 {
-        println!("There is a Water Telegram and Number of Water Consumption is {:?} > 0", telegram.InformationType.len());
-    } else {
-        println!("The telegram is for {:?} Data but No {:?} Data can be found.", telegram.InformationType, telegram.InformationType);
-        std::process::exit(42);
-    }
-    if telegram.InformationType.contains(&"E".to_string()) && telegram.VoltageP1.len() > 0 {
-        println!("There is Electricity Data. Further Checks are Needed. Currently, Number of VoltageP1 Data - {:?}", telegram.VoltageP1.len());
-    } else {
-        println!("The telegram is for {:?} Data but No {:?} Data can be found.", telegram.InformationType, telegram.InformationType);
-        std::process::exit(42);
-    }
-    if telegram.InformationType.contains(&"G".to_string()) && child_telegram1.GasConsumption.len() > 0 {
-        println!("There is Gas Data. Further Checks are Needed. Currently, Number of Gas Data - {:?}", telegram.InformationType.len());
-    } else {
-        println!("The telegram is for {:?} but No {:?} Data can be found.", telegram.InformationType, telegram.InformationType);
-        std::process::exit(42);
-    }
+    // if telegram.InformationType.contains(&"W".to_string()) && telegram.WaterConsumption.len() > 0 {
+    //     println!("There is a Water Telegram and Number of Water Consumption is {:?} > 0", telegram.InformationType.len());
+    // } else {
+    //     println!("The telegram is for {:?} Data but No {:?} Data can be found - 1.", telegram.InformationType, telegram.InformationType);
+    //     std::process::exit(42);
+    // }
+    // if telegram.InformationType.contains(&"E".to_string()) && telegram.VoltageP1.len() > 0 {
+    //     println!("There is Electricity Data. Further Checks are Needed. Currently, Number of VoltageP1 Data - {:?}", telegram.VoltageP1.len());
+    // } else {
+    //     println!("The telegram is for {:?} Data but No {:?} Data can be found - 2.", telegram.InformationType, telegram.InformationType);
+    //     std::process::exit(42);
+    // }
+    // if telegram.InformationType.contains(&"G".to_string()) && child_telegram1.GasConsumption.len() > 0 {
+    //     println!("There is Gas Data. Further Checks are Needed. Currently, Number of Gas Data - {:?}", telegram.InformationType.len());
+    // } else {
+    //     println!("The telegram is for {:?} but No {:?} Data can be found - 3.", telegram.InformationType, telegram.InformationType);
+    //     std::process::exit(42);
+    // }
     if telegram.VoltageP1.len() == telegram.VoltageP2.len() && telegram.VoltageP1.len() == telegram.VoltageP3.len() {
         println!("Equal Number of Values for Each Phase of Voltage - {:?}", telegram.VoltageP1.len());
     } else {
@@ -918,4 +925,51 @@ fn main() -> Result<(), MainError> {
 
     result.generate().expect("error generating graphs");
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_telegram_ver() {
+        let input = "12";
+        let result = telegram_ver(input);
+        assert_eq!(result, Ok(Versions::V12));
+    }
+    #[test]     //  Smoke Test
+    fn test_version_extension_1() {
+        let input = "gr";
+        let result = version_ext(input);
+        assert_eq!(result, Ok(Extensions::GasRecursive));
+    }
+    #[test]     //  Smoke Test
+    fn test_version_extension_2() {
+        let input = "r\r";
+        let result = version_ext(input);
+        assert_eq!(result, Ok(Extensions::Recursive));
+    }
+    #[test]     //  Smoke Test
+    fn test_process_lines_1() {
+        let line = "1.2.0#(END)";
+        let result = process_lines(line);
+        assert_eq!(result, ("1.2.0".to_string(), "END".to_string()));
+    }
+    #[test]     //  Smoke Test
+    fn test_process_lines_2() {
+        let line = " ";
+        let result = process_lines(line);
+        assert_eq!(result, ("LineBreak".to_string(),"".to_string()));
+    }
+    #[test]     //  Smoke Test
+    fn test_version_key() {
+        let line = "1.1.0";
+        let result = version_key(line);
+        assert_eq!(result, (Ok(Keys::Start)));
+    }
+    #[test]     //  Smoke Test
+    fn test_hex_string() {
+        let line = "506f776572204661696c757265";
+        let result = hex_string(line);
+        assert_eq!(result, "Power Failure");
+    }
 }

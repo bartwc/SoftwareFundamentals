@@ -1,58 +1,16 @@
 {
   "data": [
     {
-      "phase_1": 10.0,
+      "phase_1": 1.0,
       "phase_2": 10.0,
-      "phase_3": 8.4,
-      "timestamp": 1072911642
+      "phase_3": 0.5,
+      "timestamp": 1688563601
     },
     {
-      "phase_1": 10.0,
+      "phase_1": 0.7,
       "phase_2": 10.0,
-      "phase_3": 8.0,
-      "timestamp": 1072911702
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 11.0,
-      "phase_3": 9.0,
-      "timestamp": 1072911762
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 12.0,
-      "phase_3": 9.0,
-      "timestamp": 1072911822
-    },
-    {
-      "phase_1": 9.7,
-      "phase_2": 12.0,
-      "phase_3": 10.0,
-      "timestamp": 1072911882
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 9.9,
-      "phase_3": 10.0,
-      "timestamp": 1072911942
-    },
-    {
-      "phase_1": 9.3,
-      "phase_2": 9.0,
-      "phase_3": 10.0,
-      "timestamp": 1072912002
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 9.0,
-      "phase_3": 10.0,
-      "timestamp": 1072912062
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 9.0,
-      "phase_3": 9.0,
-      "timestamp": 1072912122
+      "phase_3": 0.5,
+      "timestamp": 1688563601
     }
   ]
 }

@@ -3,47 +3,12 @@
     {
       "produced": 0.0,
       "consumed": 0.0,
-      "timestamp": 1072911642
+      "timestamp": 1688563601
     },
     {
-      "produced": 10.0,
-      "consumed": 7.0,
-      "timestamp": 1072911702
-    },
-    {
-      "produced": 6.0,
-      "consumed": 9.0,
-      "timestamp": 1072911762
-    },
-    {
-      "produced": 14.0,
-      "consumed": 9.0,
-      "timestamp": 1072911822
-    },
-    {
-      "produced": 15.0,
-      "consumed": 10.0,
-      "timestamp": 1072911882
-    },
-    {
-      "produced": 13.0,
-      "consumed": 9.0,
-      "timestamp": 1072911942
-    },
-    {
-      "produced": 10.0,
-      "consumed": 10.0,
-      "timestamp": 1072912002
-    },
-    {
-      "produced": 9.0,
-      "consumed": 12.0,
-      "timestamp": 1072912062
-    },
-    {
-      "produced": 11.0,
-      "consumed": 10.0,
-      "timestamp": 1072912122
+      "produced": 200.0,
+      "consumed": 1000000.0,
+      "timestamp": 1688563601
     }
   ]
 }
