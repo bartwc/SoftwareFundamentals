@@ -931,45 +931,87 @@ fn main() -> Result<(), MainError> {
 mod tests {
     use super::*;
     #[test]
-    fn test_telegram_ver() {
+    fn test_telegram_ver_pass() {
         let input = "12";
         let result = telegram_ver(input);
         assert_eq!(result, Ok(Versions::V12));
     }
-    #[test]     //  Smoke Test
-    fn test_version_extension_1() {
+    #[test]
+    fn test_telegram_ver_fail() {
+        let input = "11";
+        let result = telegram_ver(input);
+        assert_eq!(result, Ok(Versions::V12));
+    }
+    #[test]
+    fn test_version_extension_pass() {
         let input = "gr";
         let result = version_ext(input);
         assert_eq!(result, Ok(Extensions::GasRecursive));
     }
-    #[test]     //  Smoke Test
+    #[test]
     fn test_version_extension_2() {
-        let input = "r\r";
+        let input = "ab";
         let result = version_ext(input);
         assert_eq!(result, Ok(Extensions::Recursive));
     }
-    #[test]     //  Smoke Test
-    fn test_process_lines_1() {
+    #[test]
+    fn test_process_lines_pass1() {
         let line = "1.2.0#(END)";
         let result = process_lines(line);
         assert_eq!(result, ("1.2.0".to_string(), "END".to_string()));
     }
-    #[test]     //  Smoke Test
-    fn test_process_lines_2() {
+    #[test]
+    fn test_process_lines_fail1() {
+        let line = "1.2.0#(END)";
+        let result = process_lines(line);
+        assert_eq!(result, ("1.2.".to_string(), "ND".to_string()));
+    }
+    #[test]
+    fn test_process_lines_pass2() {
         let line = " ";
         let result = process_lines(line);
         assert_eq!(result, ("LineBreak".to_string(),"".to_string()));
     }
-    #[test]     //  Smoke Test
-    fn test_version_key() {
+    #[test]
+    fn test_process_lines_fail2() {
+        let line = " ";
+        let result = process_lines(line);
+        assert_eq!(result, ("Line Space".to_string(),"".to_string()));
+    }
+    #[test]
+    fn test_version_key_pass() {
         let line = "1.1.0";
         let result = version_key(line);
         assert_eq!(result, (Ok(Keys::Start)));
     }
-    #[test]     //  Smoke Test
-    fn test_hex_string() {
+    #[test]
+    fn test_version_key_fail() {
+        let line = "1.1.1";
+        let result = version_key(line);
+        assert_eq!(result, (Ok(Keys::Start)));
+    }
+    #[test]
+    fn test_hex_string_pass() {
         let line = "506f776572204661696c757265";
         let result = hex_string(line);
         assert_eq!(result, "Power Failure");
+    }
+    #[test]
+    fn test_hex_string_fail() {
+        let line = "506f776572204661696c757265";
+        let result = hex_string(line);
+        assert_eq!(result, "Power Failure.");
+    }
+    #[test]
+    fn test_parse_datetime_pass() {
+        let date_message = "22-Jan-22 12:34:56 (S)";
+        let result = parse_datetime(date_message);
+        assert_eq!(result, Some((2022,1,22,12,34,56,true)));
+    }
+    #[test]
+    fn test_parse_datetime_fail() {
+        let date_message = "22-Jan-22 12:34:56 (S)";
+        let result = parse_datetime(date_message);
+        assert_eq!(result, Some((22,1,22,12,34,56,true)));
     }
 }
