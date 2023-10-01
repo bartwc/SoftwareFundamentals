@@ -1,3 +1,404 @@
 {
-  "data": []
+  "data": [
+    {
+      "water_delta": 0,
+      "timestamp": 1072911642
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072911702
+    },
+    {
+      "water_delta": 14,
+      "timestamp": 1072911762
+    },
+    {
+      "water_delta": 16,
+      "timestamp": 1072911822
+    },
+    {
+      "water_delta": 14,
+      "timestamp": 1072911882
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072911942
+    },
+    {
+      "water_delta": 4,
+      "timestamp": 1072912002
+    },
+    {
+      "water_delta": 1,
+      "timestamp": 1072912062
+    },
+    {
+      "water_delta": 1,
+      "timestamp": 1072912122
+    },
+    {
+      "water_delta": 15,
+      "timestamp": 1072912182
+    },
+    {
+      "water_delta": 12,
+      "timestamp": 1072912242
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072912302
+    },
+    {
+      "water_delta": 8,
+      "timestamp": 1072912362
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072912422
+    },
+    {
+      "water_delta": 11,
+      "timestamp": 1072912482
+    },
+    {
+      "water_delta": 12,
+      "timestamp": 1072912542
+    },
+    {
+      "water_delta": 11,
+      "timestamp": 1072912602
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072912662
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072912722
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072912782
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072912842
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072912902
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072912962
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072913022
+    },
+    {
+      "water_delta": 3,
+      "timestamp": 1072913082
+    },
+    {
+      "water_delta": 2,
+      "timestamp": 1072913142
+    },
+    {
+      "water_delta": 4,
+      "timestamp": 1072913202
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072913262
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072913322
+    },
+    {
+      "water_delta": 2,
+      "timestamp": 1072913382
+    },
+    {
+      "water_delta": 5,
+      "timestamp": 1072913442
+    },
+    {
+      "water_delta": 13,
+      "timestamp": 1072913502
+    },
+    {
+      "water_delta": 17,
+      "timestamp": 1072913562
+    },
+    {
+      "water_delta": 18,
+      "timestamp": 1072913622
+    },
+    {
+      "water_delta": 15,
+      "timestamp": 1072913682
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072913742
+    },
+    {
+      "water_delta": 6,
+      "timestamp": 1072913802
+    },
+    {
+      "water_delta": 6,
+      "timestamp": 1072913862
+    },
+    {
+      "water_delta": 1,
+      "timestamp": 1072913922
+    },
+    {
+      "water_delta": 1,
+      "timestamp": 1072913982
+    },
+    {
+      "water_delta": 3,
+      "timestamp": 1072914042
+    },
+    {
+      "water_delta": 5,
+      "timestamp": 1072914102
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072914162
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072914222
+    },
+    {
+      "water_delta": 8,
+      "timestamp": 1072914282
+    },
+    {
+      "water_delta": 8,
+      "timestamp": 1072914342
+    },
+    {
+      "water_delta": 6,
+      "timestamp": 1072914402
+    },
+    {
+      "water_delta": 6,
+      "timestamp": 1072914462
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072914522
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072914582
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072914642
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072914702
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072914762
+    },
+    {
+      "water_delta": 4,
+      "timestamp": 1072914822
+    },
+    {
+      "water_delta": 5,
+      "timestamp": 1072914882
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072914942
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072915002
+    },
+    {
+      "water_delta": 16,
+      "timestamp": 1072915062
+    },
+    {
+      "water_delta": 17,
+      "timestamp": 1072915122
+    },
+    {
+      "water_delta": 14,
+      "timestamp": 1072915182
+    },
+    {
+      "water_delta": 3,
+      "timestamp": 1072915242
+    },
+    {
+      "water_delta": 4,
+      "timestamp": 1072915302
+    },
+    {
+      "water_delta": 5,
+      "timestamp": 1072915362
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072915422
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072915482
+    },
+    {
+      "water_delta": 6,
+      "timestamp": 1072915542
+    },
+    {
+      "water_delta": 4,
+      "timestamp": 1072915602
+    },
+    {
+      "water_delta": 4,
+      "timestamp": 1072915662
+    },
+    {
+      "water_delta": 3,
+      "timestamp": 1072915722
+    },
+    {
+      "water_delta": 3,
+      "timestamp": 1072915782
+    },
+    {
+      "water_delta": 5,
+      "timestamp": 1072915842
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072915902
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072915962
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072916022
+    },
+    {
+      "water_delta": 9,
+      "timestamp": 1072916082
+    },
+    {
+      "water_delta": 17,
+      "timestamp": 1072916142
+    },
+    {
+      "water_delta": 16,
+      "timestamp": 1072916202
+    },
+    {
+      "water_delta": 13,
+      "timestamp": 1072916262
+    },
+    {
+      "water_delta": 11,
+      "timestamp": 1072916322
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072916382
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072916442
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072916502
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072916562
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072916622
+    },
+    {
+      "water_delta": 8,
+      "timestamp": 1072916682
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072916742
+    },
+    {
+      "water_delta": 12,
+      "timestamp": 1072916802
+    },
+    {
+      "water_delta": 15,
+      "timestamp": 1072916862
+    },
+    {
+      "water_delta": 17,
+      "timestamp": 1072916922
+    },
+    {
+      "water_delta": 16,
+      "timestamp": 1072916982
+    },
+    {
+      "water_delta": 13,
+      "timestamp": 1072917042
+    },
+    {
+      "water_delta": 10,
+      "timestamp": 1072917102
+    },
+    {
+      "water_delta": 8,
+      "timestamp": 1072917162
+    },
+    {
+      "water_delta": 8,
+      "timestamp": 1072917222
+    },
+    {
+      "water_delta": 11,
+      "timestamp": 1072917282
+    },
+    {
+      "water_delta": 13,
+      "timestamp": 1072917342
+    },
+    {
+      "water_delta": 14,
+      "timestamp": 1072917402
+    },
+    {
+      "water_delta": 7,
+      "timestamp": 1072917462
+    },
+    {
+      "water_delta": 5,
+      "timestamp": 1072917522
+    },
+    {
+      "water_delta": 5,
+      "timestamp": 1072917582
+    }
+  ]
 }

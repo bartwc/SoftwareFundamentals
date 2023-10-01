@@ -1,14 +1,64 @@
 {
   "data": [
     {
-      "produced": 0.0,
-      "consumed": 0.0,
-      "timestamp": 1688563601
+      "produced": 15.0,
+      "consumed": 8.0,
+      "timestamp": 1072916922
     },
     {
-      "produced": 200.0,
-      "consumed": 1000000.0,
-      "timestamp": 1688563601
+      "produced": 17.0,
+      "consumed": 10.0,
+      "timestamp": 1072916982
+    },
+    {
+      "produced": 14.0,
+      "consumed": 10.0,
+      "timestamp": 1072917042
+    },
+    {
+      "produced": 10.0,
+      "consumed": 10.0,
+      "timestamp": 1072917102
+    },
+    {
+      "produced": 8.0,
+      "consumed": 10.0,
+      "timestamp": 1072917162
+    },
+    {
+      "produced": 7.0,
+      "consumed": 4.0,
+      "timestamp": 1072917222
+    },
+    {
+      "produced": 11.0,
+      "consumed": 1.0,
+      "timestamp": 1072917282
+    },
+    {
+      "produced": 13.0,
+      "consumed": 5.0,
+      "timestamp": 1072917342
+    },
+    {
+      "produced": 16.0,
+      "consumed": 12.0,
+      "timestamp": 1072917402
+    },
+    {
+      "produced": 15.0,
+      "consumed": 17.0,
+      "timestamp": 1072917462
+    },
+    {
+      "produced": 16.0,
+      "consumed": 19.0,
+      "timestamp": 1072917522
+    },
+    {
+      "produced": 15.0,
+      "consumed": 17.0,
+      "timestamp": 1072917582
     }
   ]
 }
