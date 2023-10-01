@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DSMR Visualizer</title>
+
+    <style>
+        :root {
+            --light-red: #ae4b6c;
+            --red: #723147;
+            --dark-red: #31152B;
+            --white: #FFFFFF;
+            --dark-gray: #1E2329;
+            --darker-gray: #22272e;
+            --gray: #2d333b;
+            --light-gray: #444c56;
+            --black: #000000;
+            --brown: #e0cd9b;
+            --alabaster: #e8eeea;
+            --blue: #012a36;
+            --light-blue: #007ea7;
+            --tudelft: #00a6d6;
+            --accent-1: rgb(204, 68, 82);
+            --accent-2: rgb(36, 97, 128);
+            --accent-3: rgb(128, 29, 39);
+            --accent-4: rgb(47, 152, 204);
+            --accent-5: rgb(17, 128, 42);
+            --accent-6: rgb(67, 204, 98);
+            --accent-7: rgb(57, 204, 174);
+            --accent-8: rgb(102, 82, 74);
+            --accent-9: rgb(128, 124, 23);
+            --accent-10: rgb(204, 111, 78);
+        }
+
+        body, html {
+            color: var(--white);
+            background: var(--dark-gray);
+        }
+
+        .graph {
+            object-fit: cover;
+            width: 100%;
+            max-height: 100%;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .graphs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30em, 1fr));
+            gap: 2em;
+            padding: 2em;
+
+        }
+
+        #event_log {
+            grid-area: eventlog;
+
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            color: white;
+            gap: 2px;
+
+            font-family: "sans-serif";
+        }
+
+        #event_log>span {
+            border-radius: 0.5em;
+            padding: 1em 2em;
+        }
+
+        #event_log>.high {
+            background-color: var(--accent-1);
+        }
+
+        #event_log>.low {
+            background-color: var(--accent-5);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="graphs">
+            <img src="current over time.png" class="graph" id="graph1">
+            <img src="voltage over time.png" class="graph" id="graph2">
+            <img src="energy usage over time.png" class="graph" id="graph3">
+            <img src="water usage over time.png" class="graph" id="graph4">
+            <img src="gas usage over time.png" class="graph" id="graph5">
+        </div>
+        <div id="event_log">
+            <h1>Event Log</h1>
+
+            
+        </div>
+    </main>
+    </div>
+</body>
