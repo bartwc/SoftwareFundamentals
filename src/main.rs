@@ -5,11 +5,15 @@ use tudelft_dsmr_output_generator::water_over_time::{self, WaterData, WaterOverT
 use tudelft_dsmr_output_generator::gas_over_time::{self, GasData, GasOverTime};
 use tudelft_dsmr_output_generator::voltage_over_time::{create_voltage_over_time_graph, VoltageData,};
 use std::io::{Read};
+use std::fmt;
 use std::process::{id, exit};
-use tudelft_dsmr_output_generator::{GraphBuilder, Graphs, date_to_timestamp, UnixTimeStamp};
+use tudelft_dsmr_output_generator::{GraphBuilder, Graphs, date_to_timestamp};
+// use tudelft_dsmr_output_generator::date_to_timestamp;
+
 /// Contains `MainError`, and code to convert `PlotError` and `io::Error` into a `MainError`
 /// https://docs.rs/tudelft-dsmr-output-generator/0.1.3/tudelft_dsmr_output_generator/index.html
 mod error;
+mod test;
 
 #[derive(Debug)]
 #[derive(PartialEq)]
@@ -26,35 +30,36 @@ enum Extensions {
 }
 #[derive(Debug)]
 #[derive(PartialEq)]
+
 enum Keys {
     Start, // 1.1.0
     Date, // 2.1
     End, // 1.2.0
-    EventLogSeverity, // 3.1.n
-    EventLogMessage, // 3.2.n
-    EventLogDate, // 3.3.n
-    InformationType, // 4,1
-    GasModel, // 5.1
-    GasConsumption, // 5.2
-    WaterConsumption, // 6.1
-    VoltageP1, // 7.1.1
-    VoltageP2, // 7.1.2
-    VoltageP3, // 7.1.3
-    CurrentP1, // 7.2.1
-    CurrentP2, // 7.2.2
-    CurrentP3, // 7.2.3
-    PowerP1, // 7.3.1
-    PowerP2, // 7.3.2
-    PowerP3, // 7.3.3
-    EnergyConsumption, // 7.4.1
-    EnergyProduction, // 7.4.2
+    event_log_severity, // 3.1.n
+    event_log_message, // 3.2.n
+    event_log_date, // 3.3.n
+    information_type, // 4,1
+    gas_model, // 5.1
+    gas_consumption, // 5.2
+    water_consumption, // 6.1
+    voltage_p1, // 7.1.1
+    voltage_p2, // 7.1.2
+    voltage_p3, // 7.1.3
+    current_p1, // 7.2.1
+    current_p2, // 7.2.2
+    current_p3, // 7.2.3
+    power_p1, // 7.3.1
+    power_p2, // 7.3.2
+    power_p3, // 7.3.3
+    energy_consumption, // 7.4.1
+    energy_production, // 7.4.2
     LineBreak, // NA
-    ChildTelegram1, // 1.1.1
-    ChildTelegram2, // 1.1.2
-    ChildTelegram3, // 1.1.3  
-    EndChildTelegram1, // 1.2.1
-    EndChildTelegram2, // 1.2.2
-    EndChildTelegram3, // 1.2.3  
+    child_telegram1, // 1.1.1
+    // ChildTelegram2, // 1.1.2
+    // ChildTelegram3, // 1.1.3
+    Endchild_telegram1, // 1.2.1
+    // EndChildTelegram2, // 1.2.2
+    // EndChildTelegram3, // 1.2.3
 }
 // struct Header {
 //     version: Option<Versions>, // None if no header found yet.
@@ -62,119 +67,66 @@ enum Keys {
 // }
 #[derive(Debug)]
 #[derive(Default)]
+#[derive(PartialEq)]
 struct Telegram{
-    Telegram_Version: String, // 0.0
-    Telegram_Extensions: String, // 0.0+
-    Telegram_Start: Vec<String>, // 1.1
-    Telegram_Date: Vec<String>, // 2.1
-    EventLogSeverity: Vec<String>, // 3.1.
-    EventLogMessage: Vec<String>, // 3.2.n
-    EventLogDate: Vec<String>, // 3.3.n
-    InformationType: Vec<String>, // 4.1
-    GasModel: Vec<String>, // 5.1
-    GasConsumption: Vec<f64>, // 5.2
-    WaterConsumption: Vec<u64>, // 6.1
-    VoltageP1: Vec<f64>, // 7.1.1
-    VoltageP2: Vec<f64>, // 7.1.2
-    VoltageP3: Vec<f64>, // 7.1.3
-    CurrentP1: Vec<f64>, // 7.2.1
-    CurrentP2: Vec<f64>, // 7.2.2
-    CurrentP3: Vec<f64>, // 7.2.3
-    PowerP1: Vec<f64>, // 7.3.1
-    PowerP2: Vec<f64>, // 7.3.2
-    PowerP3: Vec<f64>, // 7.3.3
-    EnergyConsumption: Vec<f64>, // 7.4.1
-    EnergyProduction: Vec<f64>, // 7.4.2
-    Telegram_End: Vec<String>, // 1.2.0
-    TimeStamp: Vec<i64>, // 2.1.n
-    ChildTelegram1: ChildTelegram1, // 1.1.1
-    ChildTelegram2: ChildTelegram2, // 1.1.2
-    ChildTelegram3: ChildTelegram3, // 1.1.3
+    telegram_version: String, // 0.0 Option<Vec<String>>
+    telegram_extensions: String, // 0.0+ Option<Vec<String>>
+    telegram_start: Vec<String>, // 1.1
+    telegram_date: Vec<String>, // 2.1
+    event_log_severity: Vec<String>, // 3.1.
+    event_log_message: Vec<String>, // 3.2.n
+    event_log_date: Vec<String>, // 3.3.n
+    information_type: Vec<String>, // 4.1
+    gas_model: Vec<String>, // 5.1
+    gas_consumption: Vec<f64>, // 5.2
+    water_consumption: Vec<u64>, // 6.1
+    voltage_p1: Vec<f64>, // 7.1.1
+    voltage_p2: Vec<f64>, // 7.1.2
+    voltage_p3: Vec<f64>, // 7.1.3
+    current_p1: Vec<f64>, // 7.2.1
+    current_p2: Vec<f64>, // 7.2.2
+    current_p3: Vec<f64>, // 7.2.3
+    power_p1: Vec<f64>, // 7.3.1
+    power_p2: Vec<f64>, // 7.3.2
+    power_p3: Vec<f64>, // 7.3.3
+    energy_consumption: Vec<f64>, // 7.4.1
+    energy_production: Vec<f64>, // 7.4.2
+    telegram_end: Vec<String>, // 1.2.0
+    time_stamp: Vec<i64>, // 2.1.n
+    child_telegram1: child_telegram1, // 1.1.1
+    // ChildTelegram2: ChildTelegram2, // 1.1.2
+    // ChildTelegram3: ChildTelegram3, // 1.1.3
 }
 #[derive(Debug)]
 #[derive(Default)]
-struct ChildTelegram1 {
-    // Telegram_Version: String, // 0.0
-    // Telegram_Extensions: String, // 0.0+
-    Telegram_Start: Vec<String>, // 1.1.1
-    Telegram_Date: Vec<String>, // 2.1
-    EventLogSeverity: Vec<String>, // 3.1.n
-    EventLogMessage: Vec<String>, // 3.2.n
-    EventLogDate: Vec<String>, // 3.3.n
-    InformationType: Vec<String>, // 4.1
-    GasModel: Vec<String>, // 5.1
-    GasConsumption: Vec<f64>, // 5.2
-    WaterConsumption: Vec<u64>, // 6.1
-    VoltageP1: Vec<f64>, // 7.1.1
-    VoltageP2: Vec<f64>, // 7.1.2
-    VoltageP3: Vec<f64>, // 7.1.3
-    CurrentP1: Vec<f64>, // 7.2.1
-    CurrentP2: Vec<f64>, // 7.2.2
-    CurrentP3: Vec<f64>, // 7.2.3
-    PowerP1: Vec<f64>, // 7.3.1
-    PowerP2: Vec<f64>, // 7.3.2
-    PowerP3: Vec<f64>, // 7.3.3
-    EnergyConsumption: Vec<f64>, // 7.4.1
-    EnergyProduction: Vec<f64>, // 7.4.2
-    Telegram_End: Vec<String>, // 1.2.1
-    TimeStamp: Vec<i64>, // 2.1.n
+#[derive(PartialEq)]
+struct child_telegram1 {
+    // telegram_version: String, // 0.0
+    // telegram_extensions: String, // 0.0+
+    telegram_start: Vec<String>, // 1.1.1
+    telegram_date: Vec<String>, // 2.1
+    // event_log_severity: Vec<String>, // 3.1.n
+    // event_log_message: Vec<String>, // 3.2.n
+    // event_log_date: Vec<String>, // 3.3.n
+    // information_type: Vec<String>, // 4.1
+    gas_model: Vec<String>, // 5.1
+    gas_consumption: Vec<f64>, // 5.2
+    // water_consumption: Vec<u64>, // 6.1
+    // voltage_p1: Vec<f64>, // 7.1.1
+    // voltage_p2: Vec<f64>, // 7.1.2
+    // voltage_p3: Vec<f64>, // 7.1.3
+    // current_p1: Vec<f64>, // 7.2.1
+    // current_p2: Vec<f64>, // 7.2.2
+    // current_p3: Vec<f64>, // 7.2.3
+    // power_p1: Vec<f64>, // 7.3.1
+    // power_p2: Vec<f64>, // 7.3.2
+    // power_p3: Vec<f64>, // 7.3.3
+    // energy_consumption: Vec<f64>, // 7.4.1
+    // energy_production: Vec<f64>, // 7.4.2
+    telegram_end: Vec<String>, // 1.2.1
+    // time_stamp: Vec<i64>, // 2.1.n
 }
-#[derive(Debug)]
-#[derive(Default)]
-struct ChildTelegram2 {
-    // Telegram_Version: String, // 0.0
-    // Telegram_Extensions: String, // 0.0+
-    Telegram_Start: Vec<String>, // 1.1.2
-    Telegram_Date: Vec<String>, // 2.1
-    EventLogSeverity: Vec<String>, // 3.1.n
-    EventLogMessage: Vec<String>, // 3.2.n
-    EventLogDate: Vec<String>, // 3.3.n
-    InformationType: Vec<String>, // 4.1
-    GasModel: Vec<String>, // 5.1
-    GasConsumption: Vec<f64>, // 5.2
-    WaterConsumption: Vec<u64>, // 6.1
-    VoltageP1: Vec<f64>, // 7.1.1
-    VoltageP2: Vec<f64>, // 7.1.2
-    VoltageP3: Vec<f64>, // 7.1.3
-    CurrentP1: Vec<f64>, // 7.2.1
-    CurrentP2: Vec<f64>, // 7.2.2
-    CurrentP3: Vec<f64>, // 7.2.3
-    PowerP1: Vec<f64>, // 7.3.1
-    PowerP2: Vec<f64>, // 7.3.2
-    PowerP3: Vec<f64>, // 7.3.3
-    EnergyConsumption: Vec<f64>, // 7.4.1
-    EnergyProduction: Vec<f64>, // 7.4.2
-    Telegram_End: Vec<String>, // 1.2.2
-    TimeStamp: Vec<i64>, // 2.1.n
-}
-#[derive(Debug)]
-#[derive(Default)]
-struct ChildTelegram3 {
-    // Telegram_Version: String, // 0.0
-    // Telegram_Extensions: String, // 0.0+
-    Telegram_Start: Vec<String>, // 1.1.3
-    Telegram_Date: Vec<String>, // 2.1
-    EventLogSeverity: Vec<String>, // 3.1.n
-    EventLogMessage: Vec<String>, // 3.2.n
-    EventLogDate: Vec<String>, // 3.3.n
-    InformationType: Vec<String>, // 4.1
-    GasModel: Vec<String>, // 5.1
-    GasConsumption: Vec<f64>, // 5.2
-    WaterConsumption: Vec<u64>, // 6.1
-    VoltageP1: Vec<f64>, // 7.1.1
-    VoltageP2: Vec<f64>, // 7.1.2
-    VoltageP3: Vec<f64>, // 7.1.3
-    CurrentP1: Vec<f64>, // 7.2.1
-    CurrentP2: Vec<f64>, // 7.2.2
-    CurrentP3: Vec<f64>, // 7.2.3
-    PowerP1: Vec<f64>, // 7.3.1
-    PowerP2: Vec<f64>, // 7.3.2
-    PowerP3: Vec<f64>, // 7.3.3
-    EnergyConsumption: Vec<f64>, // 7.4.1
-    EnergyProduction: Vec<f64>, // 7.4.2
-    Telegram_End: Vec<String>, // 1.2.3
-    TimeStamp: Vec<i64>, // 2.1.n
-}
+
 fn telegram_ver(telegram_version: &str) -> Result<Versions, &'static str> {
     match telegram_version {
         "10" => Ok(Versions::V10),
@@ -205,33 +157,166 @@ fn version_key(version_key: &str) -> Result<Keys, String> {
         "1.1.0" => Ok(Keys::Start),
         "2.1" => Ok(Keys::Date),
         "1.2.0" => Ok(Keys::End),
-        key if key.starts_with("3.1.") => Ok(Keys::EventLogSeverity),
-        key if key.starts_with("3.2.") => Ok(Keys::EventLogMessage),
-        key if key.starts_with("3.3.") => Ok(Keys::EventLogDate),
-        "4.1" => Ok(Keys::InformationType),
-        "5.1" => Ok(Keys::GasModel),
-        "5.2" => Ok(Keys::GasConsumption),
-        "6.1" => Ok(Keys::WaterConsumption),
-        "7.1.1" => Ok(Keys::VoltageP1),
-        "7.1.2" => Ok(Keys::VoltageP2),
-        "7.1.3" => Ok(Keys::VoltageP3),
-        "7.2.1" => Ok(Keys::CurrentP1),
-        "7.2.2" => Ok(Keys::CurrentP2),
-        "7.2.3" => Ok(Keys::CurrentP3),
-        "7.3.1" => Ok(Keys::PowerP1),
-        "7.3.2" => Ok(Keys::PowerP2),
-        "7.3.3" => Ok(Keys::PowerP3),
-        "7.4.1" => Ok(Keys::EnergyConsumption),
-        "7.4.2" => Ok(Keys::EnergyProduction),
+        key if key.starts_with("3.1.") => Ok(Keys::event_log_severity),
+        key if key.starts_with("3.2.") => Ok(Keys::event_log_message),
+        key if key.starts_with("3.3.") => Ok(Keys::event_log_date),
+        "4.1" => Ok(Keys::information_type),
+        "5.1" => Ok(Keys::gas_model),
+        "5.2" => Ok(Keys::gas_consumption),
+        "6.1" => Ok(Keys::water_consumption),
+        "7.1.1" => Ok(Keys::voltage_p1),
+        "7.1.2" => Ok(Keys::voltage_p2),
+        "7.1.3" => Ok(Keys::voltage_p3),
+        "7.2.1" => Ok(Keys::current_p1),
+        "7.2.2" => Ok(Keys::current_p2),
+        "7.2.3" => Ok(Keys::current_p3),
+        "7.3.1" => Ok(Keys::power_p1),
+        "7.3.2" => Ok(Keys::power_p2),
+        "7.3.3" => Ok(Keys::power_p3),
+        "7.4.1" => Ok(Keys::energy_consumption),
+        "7.4.2" => Ok(Keys::energy_production),
         "LineBreak" => Ok(Keys::LineBreak),
-        "1.1.1" => Ok(Keys::ChildTelegram1),
-        "1.1.2" => Ok(Keys::ChildTelegram2),
-        "1.1.3" => Ok(Keys::ChildTelegram3),
-        "1.2.1" => Ok(Keys::EndChildTelegram1),
-        "1.2.2" => Ok(Keys::EndChildTelegram2),
-        "1.2.3" => Ok(Keys::EndChildTelegram3),
+        "1.1.1" => Ok(Keys::child_telegram1),
+        // "1.1.2" => Ok(Keys::ChildTelegram2),
+        // "1.1.3" => Ok(Keys::ChildTelegram3),
+        "1.2.1" => Ok(Keys::Endchild_telegram1),
+        // "1.2.2" => Ok(Keys::EndChildTelegram2),
+        // "1.2.3" => Ok(Keys::EndChildTelegram3),
         other => Err(format!("Authentication Failed: {other}")),
         // _ => Err("Authentication Failed"),
+    }
+}
+fn handle_gas_model(payload: &str, child_telegram1: &mut child_telegram1, telegram: &mut Telegram, child_telegram: &str) {
+    if child_telegram == "100" {
+        child_telegram1.gas_model.push(payload.to_string());
+    } else {
+        telegram.gas_model.push(payload.to_string());
+    }
+}
+fn handle_gas_consumption(parsed_value: f64, last_gas_model: &str, child_telegram1: &mut child_telegram1, telegram: &mut Telegram, child_telegram: &str) {
+    match last_gas_model {
+        "G4" => {
+            if child_telegram == "100" {
+                child_telegram1.gas_consumption.push(parsed_value * 1.0);
+            } else {
+                telegram.gas_consumption.push(parsed_value * 1.0);
+            }
+        }
+        "G5" => {
+            if child_telegram == "100" {
+                child_telegram1.gas_consumption.push(parsed_value * 10.0);
+            } else {
+                telegram.gas_consumption.push(parsed_value * 10.0);
+            }
+        }
+        "G6" => {
+            if child_telegram == "100" {
+                child_telegram1.gas_consumption.push(parsed_value * 100.0);
+            } else {
+                telegram.gas_consumption.push(parsed_value * 100.0);
+            }
+        }
+        _ => {
+            println!("Random Non-gas_consumption Value: {:?}", parsed_value);
+            std::process::exit(42); // Exit the program when needed
+            // Handle the error as needed
+        }
+    }
+}
+fn handle_water(payload: &str, telegram: &mut Telegram) {
+    match payload.trim_end_matches("*L").parse::<u64>() {
+        Ok(parsed_value) => telegram.water_consumption.push(parsed_value),
+        Err(_) => {
+            println!("Failed to parse water_consumption: {}", payload);
+            std::process::exit(42);
+        }
+    }
+}
+fn handle_voltage(payload: &str, telegram: &mut Telegram, key: &str) {
+    // Implement the logic for handling voltage payload here
+    // For example, you might want to parse the payload and update the Telegram struct
+
+    // Placeholder logic:
+    if let Ok(parsed_value) = payload.trim_end_matches("*V").parse::<f64>() {
+        match key {
+            "voltage_p1" => telegram.voltage_p1.push(parsed_value),
+            "voltage_p2" => telegram.voltage_p2.push(parsed_value),
+            "voltage_p3" => telegram.voltage_p3.push(parsed_value),
+            _ => {
+                // Handle the case where an unexpected key is provided
+                println!("Unexpected key for voltage payload: {}", key);
+                std::process::exit(42); // Exit the program when needed
+            }
+        }
+    } else {
+        // Handle the case where parsing fails
+        println!("Failed to parse voltage payload: {}", payload);
+        std::process::exit(42); // Exit the program when needed
+    }
+}
+fn handle_current(payload: &str, telegram: &mut Telegram, key: &str) {
+    // Implement the logic for handling current payload here
+    // For example, you might want to parse the payload and update the Telegram struct
+
+    // Placeholder logic:
+    if let Ok(parsed_value) = payload.trim_end_matches("*A").parse::<f64>() {
+        match key {
+            "current_p1" => telegram.current_p1.push(parsed_value),
+            "current_p2" => telegram.current_p2.push(parsed_value),
+            "current_p3" => telegram.current_p3.push(parsed_value),
+            _ => {
+                // Handle the case where an unexpected key is provided
+                println!("Unexpected key for current payload: {}", key);
+                std::process::exit(42); // Exit the program when needed
+            }
+        }
+    } else {
+        // Handle the case where parsing fails
+        println!("Failed to parse current payload: {}", payload);
+        std::process::exit(42); // Exit the program when needed
+    }
+}
+fn handle_power(payload: &str, telegram: &mut Telegram, key: &str) {
+    // Implement the logic for handling power payload here
+    // For example, you might want to parse the payload and update the Telegram struct
+
+    // Placeholder logic:
+    if let Ok(parsed_value) = payload.trim_end_matches("*kW").parse::<f64>() {
+        match key {
+            "power_p1" => telegram.power_p1.push(parsed_value),
+            "power_p2" => telegram.power_p2.push(parsed_value),
+            "power_p3" => telegram.power_p3.push(parsed_value),
+            _ => {
+                // Handle the case where an unexpected key is provided
+                println!("Unexpected key for power payload: {}", key);
+                std::process::exit(42); // Exit the program when needed
+            }
+        }
+    } else {
+        // Handle the case where parsing fails
+        println!("Failed to parse power payload: {}", payload);
+        std::process::exit(42); // Exit the program when needed
+    }
+}
+fn handle_energy(payload: &str, telegram: &mut Telegram, key: &str) {
+    // Implement the logic for handling energy payload here
+    // For example, you might want to parse the payload and update the Telegram struct
+
+    // Placeholder logic:
+    if let Ok(parsed_value) = payload.trim_end_matches("*kWh").parse::<f64>() {
+        match key {
+            "energy_consumption" => telegram.energy_consumption.push(parsed_value),
+            "energy_production" => telegram.energy_production.push(parsed_value),
+            _ => {
+                // Handle the case where an unexpected key is provided
+                println!("Unexpected key for energy payload: {}", key);
+                std::process::exit(42); // Exit the program when needed
+            }
+        }
+    } else {
+        // Handle the case where parsing fails
+        println!("Failed to parse energy payload: {}", payload);
+        std::process::exit(42); // Exit the program when needed
     }
 }
 fn hex_string(hex_str: &str) -> String {
@@ -269,11 +354,7 @@ fn parse_datetime(input: &str) -> Option<(u16, u8, u8, u8, u8, u8, bool)> {
     let year = year_zero + 2000;
     let day = date_parts[2].parse::<u8>().ok()?;
     let month = match date_parts[1] {
-        "Jan" => 1, "Feb" => 2, "Mar" => 3,
-        "Apr" => 4, "May" => 5, "Jun" => 6,
-        "Jul" => 7, "Aug" => 8, "Sep" => 9,
-        "Oct" => 10, "Nov" => 11, "Dec" => 12,
-        _ => return None,
+        "Jan" => 1, "Feb" => 2, "Mar" => 3, "Apr" => 4, "May" => 5, "Jun" => 6, "Jul" => 7, "Aug" => 8, "Sep" => 9, "Oct" => 10, "Nov" => 11, "Dec" => 12, _ => return None,
     };
     let time_parts: Vec<&str> = parts[1].split(':').collect();
     let hour = time_parts[0].parse::<u8>().ok()?;
@@ -282,10 +363,29 @@ fn parse_datetime(input: &str) -> Option<(u16, u8, u8, u8, u8, u8, bool)> {
     let dst = parts[2].trim_matches(|c| c == '(' || c == ')') == "S";
     Some((year, month, day, hour, minute, seconds, dst))
 }
+fn parse_dates_and_timestamps(telegram: &mut Telegram) {
+    let parsed_dates: Vec<Option<(u16, u8, u8, u8, u8, u8, bool)>> = telegram
+        .telegram_date.iter().map(|date| parse_datetime(date)).collect();
+
+    // Iterate through the parsed dates and update the timestamps in the Telegram struct
+    for parsed_date in parsed_dates {
+        match parsed_date {
+            Some((year, month, day, hour, minute, seconds, dst)) => {
+                let time_stamp = date_to_timestamp(year, month, day, hour, minute, seconds, dst).unwrap_or_default();
+                telegram.time_stamp.push(time_stamp);
+                let _result = date_to_timestamp(year, month, day, hour, minute, seconds, dst);
+            }
+            None => {
+                println!("Failed to parse date and time.");
+                std::process::exit(42);
+            }
+        }
+    }
+}
 fn vector_voltage(voltage_p1: Vec<f64>, voltage_p2: Vec<f64>, voltage_p3: Vec<f64>, time_stamp: Vec<i64>) -> Vec<VoltageData> {
     let mut voltage_data = Vec::new();
 
-    // Iterate over the indices of the VoltageP1, VoltageP2, VoltageP3, and TimeStamp vectors
+    // Iterate over the indices of the voltage_p1, voltage_p2, voltage_p3, and time_stamp vectors
     for i in 0..voltage_p1.len().min(voltage_p2.len()).min(voltage_p3.len()).min(time_stamp.len()) {
         let phase_1 = voltage_p1[i];
         let phase_2 = voltage_p2[i];
@@ -307,7 +407,7 @@ fn vector_voltage(voltage_p1: Vec<f64>, voltage_p2: Vec<f64>, voltage_p3: Vec<f6
 fn vector_current(current_p1: Vec<f64>, current_p2: Vec<f64>, current_p3: Vec<f64>, time_stamp: Vec<i64>) -> Vec<CurrentData> {
     let mut current_data: Vec<CurrentData> = Vec::new();
 
-    // Iterate over the indices of the CurrentP1, CurrentP2, CurrentP3, and TimeStamp vectors
+    // Iterate over the indices of the current_p1, current_p2, current_p3, and time_stamp vectors
     for i in 0..current_p1.len().min(current_p2.len()).min(current_p3.len()).min(time_stamp.len()) {
         let phase_1 = current_p1[i];
         let phase_2 = current_p2[i];
@@ -332,7 +432,7 @@ fn vector_energy(energy_produced: Vec<f64>, energy_consumed: Vec<f64>, time_stam
     let mut consumed_diff = Vec::new();
     let mut time_diff = Vec::new();
 
-    // Iterate over the indices of the EnergyConsumption, EnergyProduction, and TimeStamp vectors
+    // Iterate over the indices of the energy_consumption, energy_production, and time_stamp vectors
     for i in 0..energy_produced.len().min(energy_consumed.len()).min(time_stamp.len()) {
         if i == 0 {
             produced_diff.push(0.0);
@@ -365,15 +465,15 @@ fn vector_energy(energy_produced: Vec<f64>, energy_consumed: Vec<f64>, time_stam
         };
         energy_data.push(data);
     }
-    energy_data
     // println!("Energy Data - {:#?}", energy_data);
+    energy_data
 }
 fn vector_water(water_consumed: Vec<u64>, time_stamp: Vec<i64>) -> Vec<WaterData> {
     let mut water_data: Vec<WaterData> = Vec::new();
     let mut consumed_diff = Vec::new();
     let mut time_diff = Vec::new();
 
-    // Iterate over the indices of the WaterConsumption, and TimeStamp vectors
+    // Iterate over the indices of the water_consumption, and time_stamp vectors
     for i in 0..water_consumed.len().min(time_stamp.len()) {
         if i == 0 {
             consumed_diff.push(0);
@@ -399,7 +499,7 @@ fn vector_gas(gas_consumed: Vec<f64>, time_stamp: Vec<i64>) -> Vec<GasData> {
     let mut consumed_diff = Vec::new();
     let mut time_diff = Vec::new();
 
-    // Iterate over the indices of the GasConsumption, and TimeStamp vectors
+    // Iterate over the indices of the gas_consumption, and time_stamp vectors
     for i in 0..gas_consumed.len().min(time_stamp.len()) {
         if i == 0 {
             consumed_diff.push(0.0);
@@ -427,118 +527,15 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
     // let l = lines.len(); // print!("{}",l); // print!("{}",input);
 
     let mut telegram: Telegram = Default::default(); // Initialize with default values
-    // let mut telegram = Telegram {
-    //     Telegram_Version: String::new(), 
-    //     Telegram_Extensions: String::new(),
-    //     Telegram_Start: Vec::new(),
-    //     Telegram_Date: Vec::new(),
-    //     EventLogSeverity: Vec::new(),
-    //     EventLogMessage: Vec::new(),
-    //     EventLogDate: Vec::new(),
-    //     InformationType: Vec::new(),
-    //     GasModel: Vec::new(),
-    //     GasConsumption: Vec::new(),
-    //     WaterConsumption: Vec::new(),
-    //     VoltageP1: Vec::new(),
-    //     VoltageP2: Vec::new(),
-    //     VoltageP3: Vec::new(),
-    //     CurrentP1: Vec::new(),
-    //     CurrentP2: Vec::new(),
-    //     CurrentP3: Vec::new(),
-    //     PowerP1: Vec::new(),
-    //     PowerP2: Vec::new(),
-    //     PowerP3: Vec::new(),
-    //     EnergyConsumption: Vec::new(),
-    //     EnergyProduction: Vec::new(),
-    //     Telegram_End: Vec::new(),
-    //     TimeStamp: Vec::new(),
-    //     ChildTelegram1: Vec::new(),
-    //     ChildTelegram2: Vec::new(),
-    //     ChildTelegram3: Vec::new(),
-    // };
+
     let mut child_telegram = "000";
-    let mut child_telegram1: ChildTelegram1 = Default::default(); // Initialize with default values
-    // let mut child_telegram1 = ChildTelegram1 {
-    //     Telegram_Start: Vec::new(),
-    //     Telegram_Date: Vec::new(),
-    //     EventLogSeverity: Vec::new(),
-    //     EventLogMessage: Vec::new(),
-    //     EventLogDate: Vec::new(),
-    //     InformationType: Vec::new(),
-    //     GasModel: Vec::new(),
-    //     GasConsumption: Vec::new(),
-    //     WaterConsumption: Vec::new(),
-    //     VoltageP1: Vec::new(),
-    //     VoltageP2: Vec::new(),
-    //     VoltageP3: Vec::new(),
-    //     CurrentP1: Vec::new(),
-    //     CurrentP2: Vec::new(),
-    //     CurrentP3: Vec::new(),
-    //     PowerP1: Vec::new(),
-    //     PowerP2: Vec::new(),
-    //     PowerP3: Vec::new(),
-    //     EnergyConsumption: Vec::new(),
-    //     EnergyProduction: Vec::new(),
-    //     Telegram_End: Vec::new(),
-    //     TimeStamp: Vec::new(),
-    // };
-    let mut child_telegram2: ChildTelegram2 = Default::default(); // Initialize with default values
-    // let mut child_telegram2 = ChildTelegram2 {
-    //     // Telegram_Version: String::new(),
-    //     Telegram_Start: Vec::new(),
-    //     Telegram_Date: Vec::new(),
-    //     EventLogSeverity: Vec::new(),
-    //     EventLogMessage: Vec::new(),
-    //     EventLogDate: Vec::new(),
-    //     InformationType: Vec::new(),
-    //     GasModel: Vec::new(),
-    //     GasConsumption: Vec::new(),
-    //     WaterConsumption: Vec::new(),
-    //     VoltageP1: Vec::new(),
-    //     VoltageP2: Vec::new(),
-    //     VoltageP3: Vec::new(),
-    //     CurrentP1: Vec::new(),
-    //     CurrentP2: Vec::new(),
-    //     CurrentP3: Vec::new(),
-    //     PowerP1: Vec::new(),
-    //     PowerP2: Vec::new(),
-    //     PowerP3: Vec::new(),
-    //     EnergyConsumption: Vec::new(),
-    //     EnergyProduction: Vec::new(),
-    //     Telegram_End: Vec::new(),
-    //     TimeStamp: Vec::new(),
-    // };
-    let mut child_telegram3: ChildTelegram3 = Default::default(); // Initialize with default values
-    // let mut child_telegram3 = ChildTelegram3 {
-    //     // Telegram_Version: String::new(),
-    //     Telegram_Start: Vec::new(),
-    //     Telegram_Date: Vec::new(),
-    //     EventLogSeverity: Vec::new(),
-    //     EventLogMessage: Vec::new(),
-    //     EventLogDate: Vec::new(),
-    //     InformationType: Vec::new(),
-    //     GasModel: Vec::new(),
-    //     GasConsumption: Vec::new(),
-    //     WaterConsumption: Vec::new(),
-    //     VoltageP1: Vec::new(),
-    //     VoltageP2: Vec::new(),
-    //     VoltageP3: Vec::new(),
-    //     CurrentP1: Vec::new(),
-    //     CurrentP2: Vec::new(),
-    //     CurrentP3: Vec::new(),
-    //     PowerP1: Vec::new(),
-    //     PowerP2: Vec::new(),
-    //     PowerP3: Vec::new(),
-    //     EnergyConsumption: Vec::new(),
-    //     EnergyProduction: Vec::new(),
-    //     Telegram_End: Vec::new(),
-    //     TimeStamp: Vec::new(),
-    // };
+    let mut child_telegram1: child_telegram1 = Default::default(); // Initialize with default values
+
     let telegram_version = &input[2..4].to_string();
-    println!("{:?}", telegram_version);
+    // println!("{:?}", telegram_version);
     match telegram_ver(&telegram_version) {
-        Ok(Versions::V10) => telegram.Telegram_Version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
-        Ok(Versions::V12) => telegram.Telegram_Version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
+        Ok(Versions::V10) => telegram.telegram_version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
+        Ok(Versions::V12) => telegram.telegram_version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
         _ => {
             println!("Neither Version 12 nor 10");
             std::process::exit(42); // Exit the program when needed
@@ -547,9 +544,9 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
     let version_extension = &input[6..8].to_string();
     // println!("{:?}", version_extension);
     match version_ext(&version_extension) {
-        Ok(Extensions::Gas) => telegram.Telegram_Extensions = version_extension.to_string(),
-        Ok(Extensions::Recursive) => telegram.Telegram_Extensions = version_extension.to_string(),
-        Ok(Extensions::GasRecursive) => telegram.Telegram_Extensions = version_extension.to_string(),
+        Ok(Extensions::Gas) => telegram.telegram_extensions = version_extension.to_string(),
+        Ok(Extensions::Recursive) => telegram.telegram_extensions = version_extension.to_string(),
+        Ok(Extensions::GasRecursive) => telegram.telegram_extensions = version_extension.to_string(),
         _ => println!("Neither Gas, Recursive nor Both"),
     }
     let lines: Vec<&str> = input.lines().collect();
@@ -561,180 +558,50 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
         // println!("Telegram ID: {}, Payload: {}", telegram_id, payload);
         let telegram_id_clone = telegram_id.to_string(); // Clone telegram_id
         match version_key(&telegram_id_clone) {
-            Ok(Keys::Start) => telegram.Telegram_Start.push(payload.to_string()), // println!("Start - {:?}", payload),
+            Ok(Keys::Start) => telegram.telegram_start.push(payload.to_string()), // println!("Start - {:?}", payload),
             Ok(Keys::Date) => {
                 if child_telegram == "100" {
-                    child_telegram1.Telegram_Date.push(payload.to_string());
-                } else if child_telegram == "010" {
-                    child_telegram2.Telegram_Date.push(payload.to_string());
-                } else if child_telegram == "001" {
-                    child_telegram3.Telegram_Date.push(payload.to_string());
+                    child_telegram1.telegram_date.push(payload.to_string());
+                // } else if child_telegram == "010" {
+                //     child_telegram2.telegram_date.push(payload.to_string());
+                // } else if child_telegram == "001" {
+                //     child_telegram3.telegram_date.push(payload.to_string());
                 } else {
-                    telegram.Telegram_Date.push(payload.to_string());
+                    telegram.telegram_date.push(payload.to_string());
                 }
             },
-            Ok(Keys::EventLogSeverity) => telegram.EventLogSeverity.push(payload.to_string()),
-            Ok(Keys::EventLogMessage) => telegram.EventLogMessage.push(hex_string(&payload)),
-            Ok(Keys::EventLogDate) => telegram.EventLogDate.push(payload.to_string()),
-            Ok(Keys::InformationType) => telegram.InformationType.push(payload.to_string()),
-            Ok(Keys::GasModel) => {
-                // Set the current gas model
-                // let current_gas_model = payload.to_string();
-                // println!("hello - {:?}",current_gas_model);
-                if child_telegram == "100" {
-                    child_telegram1.GasModel.push(payload.to_string());
-                } else if child_telegram == "010" {
-                    child_telegram2.GasModel.push(payload.to_string());
-                } else if child_telegram == "001" {
-                    child_telegram3.GasModel.push(payload.to_string());
-                } else {
-                    telegram.GasModel.push(payload.to_string());
-                }            
-            },
-            Ok(Keys::GasConsumption) => match payload.trim_end_matches("*m3").parse::<f64>() {
+            Ok(Keys::event_log_severity) => telegram.event_log_severity.push(payload.to_string()),
+            Ok(Keys::event_log_message) => telegram.event_log_message.push(hex_string(&payload)),
+            Ok(Keys::event_log_date) => telegram.event_log_date.push(payload.to_string()),
+            Ok(Keys::information_type) => telegram.information_type.push(payload.to_string()),
+            Ok(Keys::gas_model) => {handle_gas_model(&payload, &mut child_telegram1, &mut telegram, child_telegram); },
+            Ok(Keys::gas_consumption) => match payload.trim_end_matches("*m3").parse::<f64>() {
                 Ok(parsed_value) => {
-                    // println!("{:#?}",parsed_value);
-                    // println!("bye1 - {:?}",current_gas_model);
-                    // println!("bye2 - {:?}",telegram.GasModel);
-                    // println!("bye3 - {:?}",child_telegram1.GasModel);
-                    if let Some(last_gas_model) = child_telegram1.GasModel.last() {
-                        // println!("gas - {:?}",last_gas_model);
-                        match last_gas_model.as_str() {
-                            "G4" => {
-                                if child_telegram == "100" {
-                                    child_telegram1.GasConsumption.push(parsed_value * 1.0);
-                                } else if child_telegram == "010" {
-                                    child_telegram2.GasConsumption.push(parsed_value * 1.0);
-                                } else if child_telegram == "001" {
-                                    child_telegram3.GasConsumption.push(parsed_value * 1.0);
-                                } else {
-                                    telegram.GasConsumption.push(parsed_value * 1.0);
-                                }
-                            }
-                            "G5" => {
-                                if child_telegram == "100" {
-                                    child_telegram1.GasConsumption.push(parsed_value * 10.0);
-                                } else if child_telegram == "010" {
-                                    child_telegram2.GasConsumption.push(parsed_value * 10.0);
-                                } else if child_telegram == "001" {
-                                    child_telegram3.GasConsumption.push(parsed_value * 10.0);
-                                } else {
-                                    telegram.GasConsumption.push(parsed_value * 10.0);
-                                }
-                            }
-                            "G6" => {
-                                if child_telegram == "100" {
-                                    child_telegram1.GasConsumption.push(parsed_value * 100.0);
-                                } else if child_telegram == "010" {
-                                    child_telegram2.GasConsumption.push(parsed_value * 100.0);
-                                } else if child_telegram == "001" {
-                                    child_telegram3.GasConsumption.push(parsed_value * 100.0);
-                                } else {
-                                    telegram.GasConsumption.push(parsed_value * 100.0);
-                                }
-                            }
-                            _ => {
-                                println!("Random Non-GasConsumption Value: {:?}", parsed_value);
-                                std::process::exit(42); // Exit the program when needed
-                                // Handle the error as needed
-                            }
-                        }
-                    }
-                    else {
-                        println!("Missing Parsed GasConsumption Value: {}", payload);
+                    if let Some(last_gas_model) = child_telegram1.gas_model.last().cloned() {
+                        handle_gas_consumption(parsed_value, &last_gas_model, &mut child_telegram1, &mut telegram, child_telegram);
+                    } else {
+                        println!("Missing Parsed gas_consumption Value: {}", payload);
                         std::process::exit(42); // Exit the program when needed
                     }
                 }
                 _ => {
-                    println!("Failed to parse GasConsumption: {}", payload);
+                    println!("Failed to parse gas_consumption: {}", payload);
                     std::process::exit(42); // Exit the program when needed
                 }
             }
-            Ok(Keys::WaterConsumption) => match payload.trim_end_matches("*L").parse::<u64>() {
-                Ok(parsed_value) => telegram.WaterConsumption.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse WaterConsumption: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::VoltageP1) => match payload.trim_end_matches("*V").parse::<f64>() {
-                Ok(parsed_value) => telegram.VoltageP1.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse VoltageP1: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::VoltageP2) => match payload.trim_end_matches("*V").parse::<f64>() {
-                Ok(parsed_value) => telegram.VoltageP2.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse VoltageP2: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::VoltageP3) => match payload.trim_end_matches("*V").parse::<f64>() {
-                Ok(parsed_value) => telegram.VoltageP3.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse VoltageP3: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::CurrentP1) => match payload.trim_end_matches("*A").parse::<f64>() {
-                Ok(parsed_value) => telegram.CurrentP1.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse CurrentP1: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::CurrentP2) => match payload.trim_end_matches("*A").parse::<f64>() {
-                Ok(parsed_value) => telegram.CurrentP2.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse CurrentP2: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::CurrentP3) => match payload.trim_end_matches("*A").parse::<f64>() {
-                Ok(parsed_value) => telegram.CurrentP3.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse CurrentP3: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::PowerP1) => match payload.trim_end_matches("*kW").parse::<f64>() {
-                Ok(parsed_value) => telegram.PowerP1.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse PowerP1: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::PowerP2) => match payload.trim_end_matches("*kW").parse::<f64>() {
-                Ok(parsed_value) => telegram.PowerP2.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse PowerP2: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::PowerP3) => match payload.trim_end_matches("*kW").parse::<f64>() {
-                Ok(parsed_value) => telegram.PowerP3.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse PowerP3: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::EnergyConsumption) => match payload.trim_end_matches("*kWh").parse::<f64>() {
-                Ok(parsed_value) => telegram.EnergyConsumption.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse EnergyConsumption: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::EnergyProduction) => match payload.trim_end_matches("*kWh").parse::<f64>() {
-                Ok(parsed_value) => telegram.EnergyProduction.push(parsed_value),
-                Err(_) => {
-                    println!("Failed to parse EnergyProduction: {}", payload);
-                    std::process::exit(42);
-                }
-            },
-            Ok(Keys::End) => telegram.Telegram_End.push(payload.to_string()), // println!("End - {:?}", payload),
+            Ok(Keys::water_consumption) => handle_water(&payload, &mut telegram),
+            Ok(Keys::voltage_p1) => handle_voltage(&payload, &mut telegram, "voltage_p1"),
+            Ok(Keys::voltage_p2) => handle_voltage(&payload, &mut telegram, "voltage_p2"),
+            Ok(Keys::voltage_p3) => handle_voltage(&payload, &mut telegram, "voltage_p3"),
+            Ok(Keys::current_p1) => handle_current(&payload, &mut telegram, "current_p1"),
+            Ok(Keys::current_p2) => handle_current(&payload, &mut telegram, "current_p2"),
+            Ok(Keys::current_p3) => handle_current(&payload, &mut telegram, "current_p3"),
+            Ok(Keys::power_p1) => handle_power(&payload, &mut telegram, "power_p1"),
+            Ok(Keys::power_p2) => handle_power(&payload, &mut telegram, "power_p2"),
+            Ok(Keys::power_p3) => handle_power(&payload, &mut telegram, "power_p3"),
+            Ok(Keys::energy_consumption) => handle_energy(&payload, &mut telegram, "energy_consumption"),
+            Ok(Keys::energy_production) => handle_energy(&payload, &mut telegram, "energy_production"),
+            Ok(Keys::End) => telegram.telegram_end.push(payload.to_string()), // println!("End - {:?}", payload),
             Ok(Keys::LineBreak) => {
                 // Do nothing
             },
@@ -742,135 +609,27 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
                 println!("Invalid telegram. Exiting with exit code 42. {e}");
                 std::process::exit(42); // Exit with code 42 for invalid telegrams
             }
-            Ok(Keys::ChildTelegram1) => {
+            Ok(Keys::child_telegram1) => {
                 // println!("{:?}", payload);
-                child_telegram1.Telegram_Start.push(payload.to_string());
+                child_telegram1.telegram_start.push(payload.to_string());
                 child_telegram = "100";
                 // println!("{:#?}",child_telegram1);
             },
-            Ok(Keys::ChildTelegram2) => {
-                // println!("{:?}", payload);
-                child_telegram2.Telegram_Start.push(payload.to_string());
-                child_telegram = "010";
-                // println!("{:#?}",child_telegram2);
-            },
-            Ok(Keys::ChildTelegram3) => {
-                // println!("{:?}", payload);
-                child_telegram3.Telegram_Start.push(payload.to_string());
-                child_telegram = "001";
-                // println!("{:#?}",child_telegram3);
-            },
-            Ok(Keys::EndChildTelegram1) => {
-                child_telegram1.Telegram_End.push(payload.to_string());
+            Ok(Keys::Endchild_telegram1) => {
+                child_telegram1.telegram_end.push(payload.to_string());
                 child_telegram = "000";
                 // println!("{:#?}",child_telegram1);
-            },            
-            Ok(Keys::EndChildTelegram2) => {
-                child_telegram2.Telegram_End.push(payload.to_string());
-                child_telegram = "000";
-                // println!("{:#?}",child_telegram2);
-            },                        
-            Ok(Keys::EndChildTelegram3) => {
-                child_telegram3.Telegram_End.push(payload.to_string());
-                child_telegram = "000";
-                // println!("{:#?}",child_telegram3);
-            },                          
+            },
         };
     }
-    // println!("{:#?}",telegram);
-    let parsed_dates: Vec<Option<(u16, u8, u8, u8, u8, u8, bool)>> = telegram.Telegram_Date.iter().map(|date| parse_datetime(date)).collect();
-
-    // Iterate through the parsed dates and print them
-    for parsed_date in parsed_dates {
-        match parsed_date {
-            Some((year, month, day, hour, minute, seconds, dst)) => {
-                // println!(
-                //     "YY:{}, MM:{}, DD:{}, HH:{}, MM:{}, SS:{}, DST:{}",
-                //     year, month, day, hour, minute, seconds, dst
-                // );
-                let time_stamp = date_to_timestamp(year, month, day, hour, minute, seconds, dst).unwrap_or_default();
-                // println!("{:?}",timestamp);
-                telegram.TimeStamp.push(time_stamp);
-                let result = tudelft_dsmr_output_generator::date_to_timestamp(year, month, day, hour, minute, seconds, dst);
-            }
-            None => {
-                println!("Failed to parse date and time.");
-                std::process::exit(42);
-            }
-        }
-    }
+    println!("{:#?}",telegram);
+    parse_dates_and_timestamps(&mut telegram);
     // println!("{:#?}",child_telegram1);
 
-    // Error Handling with Exit 42
-    if telegram.Telegram_Date.len() > 0 {
-        println!("Telegram Date exists. Number of Dates - {:?}", telegram.Telegram_Date.len());
-    } else {
-        println!("Invalid Telegram with No Single Date");
-        std::process::exit(42);
-    }
-    if telegram.EventLogDate.len() == telegram.EventLogMessage.len() && telegram.EventLogDate.len() == telegram.EventLogSeverity.len() {
-        println!("Equal Number of Values for Event Log Date, Messages and Severity - {:?}", telegram.EventLogDate.len());
-    } else {
-        println!("The number of values for Event Log Date, Messages and Severity do not match!");
-        std::process::exit(42);
-    }
-    // if telegram.InformationType.contains(&"W".to_string()) && telegram.WaterConsumption.len() > 0 {
-    //     println!("There is a Water Telegram and Number of Water Consumption is {:?} > 0", telegram.InformationType.len());
-    // } else {
-    //     println!("The telegram is for {:?} Data but No {:?} Data can be found - 1.", telegram.InformationType, telegram.InformationType);
-    //     std::process::exit(42);
-    // }
-    // if telegram.InformationType.contains(&"E".to_string()) && telegram.VoltageP1.len() > 0 {
-    //     println!("There is Electricity Data. Further Checks are Needed. Currently, Number of VoltageP1 Data - {:?}", telegram.VoltageP1.len());
-    // } else {
-    //     println!("The telegram is for {:?} Data but No {:?} Data can be found - 2.", telegram.InformationType, telegram.InformationType);
-    //     std::process::exit(42);
-    // }
-    // if telegram.InformationType.contains(&"G".to_string()) && child_telegram1.GasConsumption.len() > 0 {
-    //     println!("There is Gas Data. Further Checks are Needed. Currently, Number of Gas Data - {:?}", telegram.InformationType.len());
-    // } else {
-    //     println!("The telegram is for {:?} but No {:?} Data can be found - 3.", telegram.InformationType, telegram.InformationType);
-    //     std::process::exit(42);
-    // }
-    if telegram.VoltageP1.len() == telegram.VoltageP2.len() && telegram.VoltageP1.len() == telegram.VoltageP3.len() {
-        println!("Equal Number of Values for Each Phase of Voltage - {:?}", telegram.VoltageP1.len());
-    } else {
-        println!("The number of values for each phase of Voltage do not match!");
-        std::process::exit(42);
-    }
-    if telegram.CurrentP1.len() == telegram.CurrentP2.len() && telegram.CurrentP1.len() == telegram.CurrentP3.len() {
-        println!("Equal Number of Values for Each Phase of Current - {:?}", telegram.CurrentP1.len());
-    } else {
-        println!("The number of values for each phase of Current do not match!");
-        std::process::exit(42);
-    }
-    if telegram.PowerP1.len() == telegram.PowerP2.len() && telegram.PowerP1.len() == telegram.PowerP3.len() {
-        println!("Equal Number of Values for Each Phase of Power - {:?}", telegram.CurrentP1.len());
-    } else {
-        println!("The number of values for each phase of Power do not match!");
-        std::process::exit(42);
-    }
-    if telegram.VoltageP1.len() == telegram.CurrentP1.len() && telegram.VoltageP1.len() == telegram.PowerP1.len() {
-        println!("Equal Number of Values for Each Phase of Voltage, Current, and Power - {:?}", telegram.VoltageP1.len());
-    } else {
-        println!("The number of values for each phase of Voltage, Current and Power do not match!");
-        std::process::exit(42);
-    }
-    if telegram.EnergyProduction.len() == telegram.EnergyConsumption.len() {
-        println!("Equal Number of Values for Energy Production and Energy Consumption - {:?}", telegram.EnergyConsumption.len());
-    } else {
-        println!("The number of values for Energy Production and Consumption do not match!");
-        std::process::exit(42);
-    }
-
-    telegram.ChildTelegram1 = child_telegram1;
-    telegram.ChildTelegram2 = child_telegram2;
-    telegram.ChildTelegram3 = child_telegram3;
-    telegram.GasConsumption.extend(telegram.ChildTelegram1.GasConsumption.iter().cloned());
-    telegram.GasConsumption.extend(telegram.ChildTelegram2.GasConsumption.iter().cloned());
-    telegram.GasConsumption.extend(telegram.ChildTelegram3.GasConsumption.iter().cloned());    
-    println!("{:#?}",&telegram);
-    // for Telegram_Date in &telegram.Telegram_Date { println!("{}", Telegram_Date); }
+    telegram.child_telegram1 = child_telegram1;
+    telegram.gas_consumption.extend(telegram.child_telegram1.gas_consumption.iter().cloned());
+    // println!("{:#?}",&telegram);
+    // for telegram_date in &telegram.telegram_date { println!("{}", telegram_date); }
     Ok(telegram)
 }
 
@@ -892,31 +651,31 @@ fn main() -> Result<(), MainError> {
     let mut result = Graphs::new()?;
 
     // let result = tudelft_dsmr_output_generator::date_to_timestamp(year, month, day, hour, minute, seconds, dst)
-    let voltage_values: Vec<VoltageData> = vector_voltage(parsed.VoltageP1.clone(), parsed.VoltageP2.clone(), parsed.VoltageP3.clone(), parsed.TimeStamp.clone());
+    let voltage_values: Vec<VoltageData> = vector_voltage(parsed.voltage_p1.clone(), parsed.voltage_p2.clone(), parsed.voltage_p3.clone(), parsed.time_stamp.clone());
     result.add_graph(create_voltage_over_time_graph(voltage_values))?;
     
-    let current_values: Vec<CurrentData> = vector_current(parsed.CurrentP1.clone(), parsed.CurrentP2.clone(), parsed.CurrentP3.clone(), parsed.TimeStamp.clone());
+    let current_values: Vec<CurrentData> = vector_current(parsed.current_p1.clone(), parsed.current_p2.clone(), parsed.current_p3.clone(), parsed.time_stamp.clone());
     let mut current_graph = CurrentOverTime::new(); // Create an instance of CurrentOverTime
     for data_current in current_values {
         current_graph.add(data_current); // Add each CurrentData instance to the graph by moving it
     }
     let _ = result.add_graph(current_graph);
 
-    let energy_values: Vec<EnergyData> = vector_energy(parsed.EnergyProduction.clone(), parsed.EnergyConsumption.clone(), parsed.TimeStamp.clone());
+    let energy_values: Vec<EnergyData> = vector_energy(parsed.energy_production.clone(), parsed.energy_consumption.clone(), parsed.time_stamp.clone());
     let mut energy_graph = EnergyOverTime::new(); // Create an instance of EnergyOverTime
     for data_energy in energy_values {
         energy_graph.add(data_energy); // Add each EnergyData instance to the graph by moving it
     }
     let _ = result.add_graph(energy_graph);
 
-    let water_values: Vec<WaterData> = vector_water(parsed.WaterConsumption.clone(), parsed.TimeStamp.clone());
+    let water_values: Vec<WaterData> = vector_water(parsed.water_consumption.clone(), parsed.time_stamp.clone());
     let mut water_graph = WaterOverTime::new(); // Create an instance of WaterOverTime
     for data_water in water_values {
         water_graph.add(data_water); // Add each WaterData instance to the graph by moving it
     }
     let _ = result.add_graph(water_graph);
 
-    let gas_values: Vec<GasData> = vector_gas(parsed.GasConsumption.clone(), parsed.TimeStamp.clone());
+    let gas_values: Vec<GasData> = vector_gas(parsed.gas_consumption.clone(), parsed.time_stamp.clone());
     let mut gas_graph = GasOverTime::new(); // Create an instance of GasOverTime
     for data_gas in gas_values {
         gas_graph.add(data_gas); // Add each GasData instance to the graph by moving it
@@ -927,91 +686,4 @@ fn main() -> Result<(), MainError> {
     Ok(())
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    fn test_telegram_ver_pass() {
-        let input = "12";
-        let result = telegram_ver(input);
-        assert_eq!(result, Ok(Versions::V12));
-    }
-    #[test]
-    fn test_telegram_ver_fail() {
-        let input = "11";
-        let result = telegram_ver(input);
-        assert_eq!(result, Ok(Versions::V12));
-    }
-    #[test]
-    fn test_version_extension_pass() {
-        let input = "gr";
-        let result = version_ext(input);
-        assert_eq!(result, Ok(Extensions::GasRecursive));
-    }
-    #[test]
-    fn test_version_extension_2() {
-        let input = "ab";
-        let result = version_ext(input);
-        assert_eq!(result, Ok(Extensions::Recursive));
-    }
-    #[test]
-    fn test_process_lines_pass1() {
-        let line = "1.2.0#(END)";
-        let result = process_lines(line);
-        assert_eq!(result, ("1.2.0".to_string(), "END".to_string()));
-    }
-    #[test]
-    fn test_process_lines_fail1() {
-        let line = "1.2.0#(END)";
-        let result = process_lines(line);
-        assert_eq!(result, ("1.2.".to_string(), "ND".to_string()));
-    }
-    #[test]
-    fn test_process_lines_pass2() {
-        let line = " ";
-        let result = process_lines(line);
-        assert_eq!(result, ("LineBreak".to_string(),"".to_string()));
-    }
-    #[test]
-    fn test_process_lines_fail2() {
-        let line = " ";
-        let result = process_lines(line);
-        assert_eq!(result, ("Line Space".to_string(),"".to_string()));
-    }
-    #[test]
-    fn test_version_key_pass() {
-        let line = "1.1.0";
-        let result = version_key(line);
-        assert_eq!(result, (Ok(Keys::Start)));
-    }
-    #[test]
-    fn test_version_key_fail() {
-        let line = "1.1.1";
-        let result = version_key(line);
-        assert_eq!(result, (Ok(Keys::Start)));
-    }
-    #[test]
-    fn test_hex_string_pass() {
-        let line = "506f776572204661696c757265";
-        let result = hex_string(line);
-        assert_eq!(result, "Power Failure");
-    }
-    #[test]
-    fn test_hex_string_fail() {
-        let line = "506f776572204661696c757265";
-        let result = hex_string(line);
-        assert_eq!(result, "Power Failure.");
-    }
-    #[test]
-    fn test_parse_datetime_pass() {
-        let date_message = "22-Jan-22 12:34:56 (S)";
-        let result = parse_datetime(date_message);
-        assert_eq!(result, Some((2022,1,22,12,34,56,true)));
-    }
-    #[test]
-    fn test_parse_datetime_fail() {
-        let date_message = "22-Jan-22 12:34:56 (S)";
-        let result = parse_datetime(date_message);
-        assert_eq!(result, Some((22,1,22,12,34,56,true)));
-    }
-}
+//cargo tarpaulin --out Html --all-features --output-dir target/tarpaulin
