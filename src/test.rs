@@ -346,24 +346,24 @@ fn test_handle_energy_production() {
 }
 #[test]
 fn test_handle_gas_consumption_g4() {
-    // Test case 1: last_gas_model is "G4", child_telegram is "100"
-    let mut child_telegram1 = child_telegram1::default();
+    // Test case 1: last_GasModel is "G4", child_telegram is "100"
+    let mut child_telegram1 = ChildTelegram1::default();
     let mut telegram = Telegram::default();
     handle_gas_consumption(5.0, "G4", &mut child_telegram1, &mut telegram, "100");
     assert_eq!(child_telegram1.gas_consumption, vec![5.0]);
 }
 #[test]
 fn test_handle_gas_consumption_g5() {
-    // Test case 1: last_gas_model is "G5", child_telegram is "100"
-    let mut child_telegram1 = child_telegram1::default();
+    // Test case 1: last_GasModel is "G5", child_telegram is "100"
+    let mut child_telegram1 = ChildTelegram1::default();
     let mut telegram = Telegram::default();
     handle_gas_consumption(5.0, "G5", &mut child_telegram1, &mut telegram, "100");
     assert_eq!(child_telegram1.gas_consumption, vec![50.0]);
 }
 #[test]
 fn test_handle_gas_consumption_g6() {
-    // Test case 1: last_gas_model is "G6", child_telegram is "100"
-    let mut child_telegram1 = child_telegram1::default();
+    // Test case 1: last_GasModel is "G6", child_telegram is "100"
+    let mut child_telegram1 = ChildTelegram1::default();
     let mut telegram = Telegram::default();
     handle_gas_consumption(5.0, "G6", &mut child_telegram1, &mut telegram, "100");
     assert_eq!(child_telegram1.gas_consumption, vec![500.0]);

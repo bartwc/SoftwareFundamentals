@@ -1,19 +1,19 @@
 use error::MainError;
 use tudelft_dsmr_output_generator::current_over_time::{CurrentData, CurrentOverTime};
-use tudelft_dsmr_output_generator::energy_over_time::{self, EnergyData, EnergyOverTime};
-use tudelft_dsmr_output_generator::water_over_time::{self, WaterData, WaterOverTime};
-use tudelft_dsmr_output_generator::gas_over_time::{self, GasData, GasOverTime};
+use tudelft_dsmr_output_generator::energy_over_time::{EnergyData, EnergyOverTime};
+use tudelft_dsmr_output_generator::water_over_time::{WaterData, WaterOverTime};
+use tudelft_dsmr_output_generator::gas_over_time::{GasData, GasOverTime};
 use tudelft_dsmr_output_generator::voltage_over_time::{create_voltage_over_time_graph, VoltageData,};
 use std::io::{Read};
-use std::fmt;
-use std::process::{id, exit};
+// use std::fmt;
+// use std::process::{id, exit};
 use tudelft_dsmr_output_generator::{GraphBuilder, Graphs, date_to_timestamp};
 // use tudelft_dsmr_output_generator::date_to_timestamp;
 
 /// Contains `MainError`, and code to convert `PlotError` and `io::Error` into a `MainError`
 /// https://docs.rs/tudelft-dsmr-output-generator/0.1.3/tudelft_dsmr_output_generator/index.html
 mod error;
-mod test;
+// mod test;
 
 #[derive(Debug)]
 #[derive(PartialEq)]
@@ -35,29 +35,29 @@ enum Keys {
     Start, // 1.1.0
     Date, // 2.1
     End, // 1.2.0
-    event_log_severity, // 3.1.n
-    event_log_message, // 3.2.n
-    event_log_date, // 3.3.n
-    information_type, // 4,1
-    gas_model, // 5.1
-    gas_consumption, // 5.2
-    water_consumption, // 6.1
-    voltage_p1, // 7.1.1
-    voltage_p2, // 7.1.2
-    voltage_p3, // 7.1.3
-    current_p1, // 7.2.1
-    current_p2, // 7.2.2
-    current_p3, // 7.2.3
-    power_p1, // 7.3.1
-    power_p2, // 7.3.2
-    power_p3, // 7.3.3
-    energy_consumption, // 7.4.1
-    energy_production, // 7.4.2
+    EventLogSeverity, // 3.1.n
+    EventLogMessage, // 3.2.n
+    EventLogDate, // 3.3.n
+    InformationType, // 4,1
+    GasModel, // 5.1
+    GasConsumption, // 5.2
+    WaterConsumption, // 6.1
+    VoltageP1, // 7.1.1
+    VoltageP2, // 7.1.2
+    VoltageP3, // 7.1.3
+    CurrentP1, // 7.2.1
+    CurrentP2, // 7.2.2
+    CurrentP3, // 7.2.3
+    PowerP1, // 7.3.1
+    PowerP2, // 7.3.2
+    PowerP3, // 7.3.3
+    EnergyConsumption, // 7.4.1
+    EnergyProduction, // 7.4.2
     LineBreak, // NA
-    child_telegram1, // 1.1.1
+    ChildTelegram1, // 1.1.1
     // ChildTelegram2, // 1.1.2
     // ChildTelegram3, // 1.1.3
-    Endchild_telegram1, // 1.2.1
+    EndChildTelegram1, // 1.2.1
     // EndChildTelegram2, // 1.2.2
     // EndChildTelegram3, // 1.2.3
 }
@@ -93,14 +93,14 @@ struct Telegram{
     energy_production: Vec<f64>, // 7.4.2
     telegram_end: Vec<String>, // 1.2.0
     time_stamp: Vec<i64>, // 2.1.n
-    child_telegram1: child_telegram1, // 1.1.1
+    child_telegram1: ChildTelegram1, // 1.1.1
     // ChildTelegram2: ChildTelegram2, // 1.1.2
     // ChildTelegram3: ChildTelegram3, // 1.1.3
 }
 #[derive(Debug)]
 #[derive(Default)]
 #[derive(PartialEq)]
-struct child_telegram1 {
+struct ChildTelegram1 {
     // telegram_version: String, // 0.0
     // telegram_extensions: String, // 0.0+
     telegram_start: Vec<String>, // 1.1.1
@@ -157,43 +157,43 @@ fn version_key(version_key: &str) -> Result<Keys, String> {
         "1.1.0" => Ok(Keys::Start),
         "2.1" => Ok(Keys::Date),
         "1.2.0" => Ok(Keys::End),
-        key if key.starts_with("3.1.") => Ok(Keys::event_log_severity),
-        key if key.starts_with("3.2.") => Ok(Keys::event_log_message),
-        key if key.starts_with("3.3.") => Ok(Keys::event_log_date),
-        "4.1" => Ok(Keys::information_type),
-        "5.1" => Ok(Keys::gas_model),
-        "5.2" => Ok(Keys::gas_consumption),
-        "6.1" => Ok(Keys::water_consumption),
-        "7.1.1" => Ok(Keys::voltage_p1),
-        "7.1.2" => Ok(Keys::voltage_p2),
-        "7.1.3" => Ok(Keys::voltage_p3),
-        "7.2.1" => Ok(Keys::current_p1),
-        "7.2.2" => Ok(Keys::current_p2),
-        "7.2.3" => Ok(Keys::current_p3),
-        "7.3.1" => Ok(Keys::power_p1),
-        "7.3.2" => Ok(Keys::power_p2),
-        "7.3.3" => Ok(Keys::power_p3),
-        "7.4.1" => Ok(Keys::energy_consumption),
-        "7.4.2" => Ok(Keys::energy_production),
+        key if key.starts_with("3.1.") => Ok(Keys::EventLogSeverity),
+        key if key.starts_with("3.2.") => Ok(Keys::EventLogMessage),
+        key if key.starts_with("3.3.") => Ok(Keys::EventLogDate),
+        "4.1" => Ok(Keys::InformationType),
+        "5.1" => Ok(Keys::GasModel),
+        "5.2" => Ok(Keys::GasConsumption),
+        "6.1" => Ok(Keys::WaterConsumption),
+        "7.1.1" => Ok(Keys::VoltageP1),
+        "7.1.2" => Ok(Keys::VoltageP2),
+        "7.1.3" => Ok(Keys::VoltageP3),
+        "7.2.1" => Ok(Keys::CurrentP1),
+        "7.2.2" => Ok(Keys::CurrentP2),
+        "7.2.3" => Ok(Keys::CurrentP3),
+        "7.3.1" => Ok(Keys::PowerP1),
+        "7.3.2" => Ok(Keys::PowerP2),
+        "7.3.3" => Ok(Keys::PowerP3),
+        "7.4.1" => Ok(Keys::EnergyConsumption),
+        "7.4.2" => Ok(Keys::EnergyProduction),
         "LineBreak" => Ok(Keys::LineBreak),
-        "1.1.1" => Ok(Keys::child_telegram1),
+        "1.1.1" => Ok(Keys::ChildTelegram1),
         // "1.1.2" => Ok(Keys::ChildTelegram2),
         // "1.1.3" => Ok(Keys::ChildTelegram3),
-        "1.2.1" => Ok(Keys::Endchild_telegram1),
+        "1.2.1" => Ok(Keys::EndChildTelegram1),
         // "1.2.2" => Ok(Keys::EndChildTelegram2),
         // "1.2.3" => Ok(Keys::EndChildTelegram3),
         other => Err(format!("Authentication Failed: {other}")),
         // _ => Err("Authentication Failed"),
     }
 }
-fn handle_gas_model(payload: &str, child_telegram1: &mut child_telegram1, telegram: &mut Telegram, child_telegram: &str) {
+fn handle_gas_model(payload: &str, child_telegram1: &mut ChildTelegram1, telegram: &mut Telegram, child_telegram: &str) {
     if child_telegram == "100" {
         child_telegram1.gas_model.push(payload.to_string());
     } else {
         telegram.gas_model.push(payload.to_string());
     }
 }
-fn handle_gas_consumption(parsed_value: f64, last_gas_model: &str, child_telegram1: &mut child_telegram1, telegram: &mut Telegram, child_telegram: &str) {
+fn handle_gas_consumption(parsed_value: f64, last_gas_model: &str, child_telegram1: &mut ChildTelegram1, telegram: &mut Telegram, child_telegram: &str) {
     match last_gas_model {
         "G4" => {
             if child_telegram == "100" {
@@ -529,11 +529,11 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
     let mut telegram: Telegram = Default::default(); // Initialize with default values
 
     let mut child_telegram = "000";
-    let mut child_telegram1: child_telegram1 = Default::default(); // Initialize with default values
+    let mut child_telegram1: ChildTelegram1 = Default::default(); // Initialize with default values
 
     let telegram_version = &input[2..4].to_string();
     // println!("{:?}", telegram_version);
-    match telegram_ver(&telegram_version) {
+    match telegram_ver(telegram_version) {
         Ok(Versions::V10) => telegram.telegram_version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
         Ok(Versions::V12) => telegram.telegram_version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
         _ => {
@@ -543,15 +543,15 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
     };
     let version_extension = &input[6..8].to_string();
     // println!("{:?}", version_extension);
-    match version_ext(&version_extension) {
+    match version_ext(version_extension) {
         Ok(Extensions::Gas) => telegram.telegram_extensions = version_extension.to_string(),
         Ok(Extensions::Recursive) => telegram.telegram_extensions = version_extension.to_string(),
         Ok(Extensions::GasRecursive) => telegram.telegram_extensions = version_extension.to_string(),
         _ => println!("Neither Gas, Recursive nor Both"),
     }
     let lines: Vec<&str> = input.lines().collect();
-    // let current_gas_model = "";
-    // println!("global - {:?}",current_gas_model);
+    // let current_GasModel = "";
+    // println!("global - {:?}",current_GasModel);
     for line in lines {
         // println!("{}", line);
         let (telegram_id, payload) = process_lines(line);
@@ -570,12 +570,12 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
                     telegram.telegram_date.push(payload.to_string());
                 }
             },
-            Ok(Keys::event_log_severity) => telegram.event_log_severity.push(payload.to_string()),
-            Ok(Keys::event_log_message) => telegram.event_log_message.push(hex_string(&payload)),
-            Ok(Keys::event_log_date) => telegram.event_log_date.push(payload.to_string()),
-            Ok(Keys::information_type) => telegram.information_type.push(payload.to_string()),
-            Ok(Keys::gas_model) => {handle_gas_model(&payload, &mut child_telegram1, &mut telegram, child_telegram); },
-            Ok(Keys::gas_consumption) => match payload.trim_end_matches("*m3").parse::<f64>() {
+            Ok(Keys::EventLogSeverity) => telegram.event_log_severity.push(payload.to_string()),
+            Ok(Keys::EventLogMessage) => telegram.event_log_message.push(hex_string(&payload)),
+            Ok(Keys::EventLogDate) => telegram.event_log_date.push(payload.to_string()),
+            Ok(Keys::InformationType) => telegram.information_type.push(payload.to_string()),
+            Ok(Keys::GasModel) => { handle_gas_model(&payload, &mut child_telegram1, &mut telegram, child_telegram); },
+            Ok(Keys::GasConsumption) => match payload.trim_end_matches("*m3").parse::<f64>() {
                 Ok(parsed_value) => {
                     if let Some(last_gas_model) = child_telegram1.gas_model.last().cloned() {
                         handle_gas_consumption(parsed_value, &last_gas_model, &mut child_telegram1, &mut telegram, child_telegram);
@@ -589,18 +589,18 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
                     std::process::exit(42); // Exit the program when needed
                 }
             }
-            Ok(Keys::water_consumption) => handle_water(&payload, &mut telegram),
-            Ok(Keys::voltage_p1) => handle_voltage(&payload, &mut telegram, "voltage_p1"),
-            Ok(Keys::voltage_p2) => handle_voltage(&payload, &mut telegram, "voltage_p2"),
-            Ok(Keys::voltage_p3) => handle_voltage(&payload, &mut telegram, "voltage_p3"),
-            Ok(Keys::current_p1) => handle_current(&payload, &mut telegram, "current_p1"),
-            Ok(Keys::current_p2) => handle_current(&payload, &mut telegram, "current_p2"),
-            Ok(Keys::current_p3) => handle_current(&payload, &mut telegram, "current_p3"),
-            Ok(Keys::power_p1) => handle_power(&payload, &mut telegram, "power_p1"),
-            Ok(Keys::power_p2) => handle_power(&payload, &mut telegram, "power_p2"),
-            Ok(Keys::power_p3) => handle_power(&payload, &mut telegram, "power_p3"),
-            Ok(Keys::energy_consumption) => handle_energy(&payload, &mut telegram, "energy_consumption"),
-            Ok(Keys::energy_production) => handle_energy(&payload, &mut telegram, "energy_production"),
+            Ok(Keys::WaterConsumption) => handle_water(&payload, &mut telegram),
+            Ok(Keys::VoltageP1) => handle_voltage(&payload, &mut telegram, "voltage_p1"),
+            Ok(Keys::VoltageP2) => handle_voltage(&payload, &mut telegram, "voltage_p2"),
+            Ok(Keys::VoltageP3) => handle_voltage(&payload, &mut telegram, "voltage_p3"),
+            Ok(Keys::CurrentP1) => handle_current(&payload, &mut telegram, "current_p1"),
+            Ok(Keys::CurrentP2) => handle_current(&payload, &mut telegram, "current_p2"),
+            Ok(Keys::CurrentP3) => handle_current(&payload, &mut telegram, "current_p3"),
+            Ok(Keys::PowerP1) => handle_power(&payload, &mut telegram, "power_p1"),
+            Ok(Keys::PowerP2) => handle_power(&payload, &mut telegram, "power_p2"),
+            Ok(Keys::PowerP3) => handle_power(&payload, &mut telegram, "power_p3"),
+            Ok(Keys::EnergyConsumption) => handle_energy(&payload, &mut telegram, "energy_consumption"),
+            Ok(Keys::EnergyProduction) => handle_energy(&payload, &mut telegram, "energy_production"),
             Ok(Keys::End) => telegram.telegram_end.push(payload.to_string()), // println!("End - {:?}", payload),
             Ok(Keys::LineBreak) => {
                 // Do nothing
@@ -609,13 +609,13 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
                 println!("Invalid telegram. Exiting with exit code 42. {e}");
                 std::process::exit(42); // Exit with code 42 for invalid telegrams
             }
-            Ok(Keys::child_telegram1) => {
+            Ok(Keys::ChildTelegram1) => {
                 // println!("{:?}", payload);
                 child_telegram1.telegram_start.push(payload.to_string());
                 child_telegram = "100";
                 // println!("{:#?}",child_telegram1);
             },
-            Ok(Keys::Endchild_telegram1) => {
+            Ok(Keys::EndChildTelegram1) => {
                 child_telegram1.telegram_end.push(payload.to_string());
                 child_telegram = "000";
                 // println!("{:#?}",child_telegram1);
@@ -686,4 +686,5 @@ fn main() -> Result<(), MainError> {
     Ok(())
 }
 
-//cargo tarpaulin --out Html --all-features --output-dir target/tarpaulin
+// cargo tarpaulin --out Html --all-features --output-dir target/tarpaulin
+// cargo run < examples/good_sequences/should_parse_3_recursive.dsmr
