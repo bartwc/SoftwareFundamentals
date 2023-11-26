@@ -6,6 +6,7 @@ use tudelft_dsmr_output_generator::gas_over_time::{GasData, GasOverTime};
 use tudelft_dsmr_output_generator::voltage_over_time::{create_voltage_over_time_graph, VoltageData,};
 use std::io::{Read};
 // use std::fmt;
+use derive_more::Display;
 // use std::process::{id, exit};
 use tudelft_dsmr_output_generator::{GraphBuilder, Graphs, date_to_timestamp};
 // use tudelft_dsmr_output_generator::date_to_timestamp;
@@ -15,12 +16,13 @@ use tudelft_dsmr_output_generator::{GraphBuilder, Graphs, date_to_timestamp};
 mod error;
 // mod test;
 
-#[derive(Debug)]
+#[derive(Debug, Display)]
 #[derive(PartialEq)]
 enum Versions {
     V10,
     V12,
 }
+
 #[derive(Debug)]
 #[derive(PartialEq)]
 enum Extensions {
@@ -127,11 +129,11 @@ struct ChildTelegram1 {
     // time_stamp: Vec<i64>, // 2.1.n
 }
 
-fn telegram_ver(telegram_version: &str) -> Result<Versions, &'static str> {
+fn telegram_ver(telegram_version: &str) -> Result<Versions, MainError> {
     match telegram_version {
         "10" => Ok(Versions::V10),
         "12" => Ok(Versions::V12),
-        _ => Err("Neither Version 12 or 10"),
+        _ => Err(MainError::VersionError("Neither Version 10 or 12".to_string())),
     }
 }
 fn version_ext(version_extension: &str) -> Result<Extensions, &'static str> {
@@ -532,15 +534,25 @@ fn parse(input: &str) -> Result<Telegram, MainError> {
     let mut child_telegram1: ChildTelegram1 = Default::default(); // Initialize with default values
 
     let telegram_version = &input[2..4].to_string();
-    // println!("{:?}", telegram_version);
-    match telegram_ver(telegram_version) {
-        Ok(Versions::V10) => telegram.telegram_version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
-        Ok(Versions::V12) => telegram.telegram_version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
-        _ => {
-            println!("Neither Version 12 nor 10");
-            std::process::exit(42); // Exit the program when needed
-        }
-    };
+    println!("{:?}", telegram_version);
+
+    let telegram_version = telegram_ver(telegram_version).expect("Please Check");
+    // set version here if validation is successful
+    match telegram_version {
+        Versions::V10 | Versions::V12 => {
+            telegram.telegram_version = telegram_version.to_string();
+        },
+    }
+
+    // match telegram_ver(telegram_version) {
+    //     Ok(Versions::V10) => telegram.telegram_version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
+    //     Ok(Versions::V12) => telegram.telegram_version = telegram_version.to_string(), // println!("Version - {:?}", telegram_version),
+    //     _ => {
+    //         println!("Neither Version 12 nor 10");
+    //         std::process::exit(42); // Exit the program when needed
+    //     }
+    // };
+
     let version_extension = &input[6..8].to_string();
     // println!("{:?}", version_extension);
     match version_ext(version_extension) {

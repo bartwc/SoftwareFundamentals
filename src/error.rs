@@ -12,14 +12,16 @@ use tudelft_dsmr_output_generator::PlotError;
 pub enum MainError {
     IoError(io::Error),
     PlotError(PlotError),
+    VersionError(String),
 }
 
 // Define how to print out the error when it occurs based on the type of error it is
 impl Display for MainError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            MainError::IoError(e) => write!(f, "IO Error Occured: {e}"),
-            MainError::PlotError(e) => write!(f, "Plot Error Occured: {e}"),
+            MainError::IoError(e) => write!(f, "IO Error Occurred: {e}"),
+            MainError::PlotError(e) => write!(f, "Plot Error Occurred: {e}"),
+            MainError::VersionError(e) => write!(f, "Version Error Occurred: {e}"),
         }
     }
 }
