@@ -1,603 +1,603 @@
 {
   "data": [
     {
-      "phase_1": 268.5,
-      "phase_2": 260.25,
+      "phase_1": 251.5,
+      "phase_2": 259.75,
       "phase_3": 260.0,
       "timestamp": 1072911642
     },
     {
-      "phase_1": 266.1,
+      "phase_1": 253.9,
       "phase_2": 260.0,
       "phase_3": 263.52,
       "timestamp": 1072911702
     },
     {
-      "phase_1": 262.98,
-      "phase_2": 256.1,
+      "phase_1": 257.02,
+      "phase_2": 267.8,
       "phase_3": 264.6,
       "timestamp": 1072911762
     },
     {
-      "phase_1": 261.09,
-      "phase_2": 259.75,
+      "phase_1": 258.9,
+      "phase_2": 266.6,
       "phase_3": 262.27,
       "timestamp": 1072911822
     },
     {
-      "phase_1": 261.25,
-      "phase_2": 261.96,
-      "phase_3": 257.62,
+      "phase_1": 258.7,
+      "phase_2": 264.6,
+      "phase_3": 257.6,
       "timestamp": 1072911882
     },
     {
-      "phase_1": 260.0,
-      "phase_2": 262.2,
+      "phase_1": 261.2,
+      "phase_2": 262.48,
       "phase_3": 253.5,
       "timestamp": 1072911942
     },
     {
-      "phase_1": 257.54,
-      "phase_2": 261.2,
-      "phase_3": 251.96,
+      "phase_1": 262.4,
+      "phase_2": 260.92,
+      "phase_3": 252.0,
       "timestamp": 1072912002
     },
     {
-      "phase_1": 256.7,
-      "phase_2": 260.3,
-      "phase_3": 266.3,
+      "phase_1": 262.48,
+      "phase_2": 260.16,
+      "phase_3": 251.86,
       "timestamp": 1072912062
     },
     {
-      "phase_1": 257.5,
+      "phase_1": 261.6,
       "phase_2": 257.09,
-      "phase_3": 264.26,
+      "phase_3": 251.64,
       "timestamp": 1072912122
     },
     {
-      "phase_1": 258.8,
+      "phase_1": 260.74,
       "phase_2": 256.6,
-      "phase_3": 261.78,
+      "phase_3": 253.17,
       "timestamp": 1072912182
     },
     {
-      "phase_1": 259.8,
-      "phase_2": 263.4,
-      "phase_3": 260.0,
+      "phase_1": 260.18,
+      "phase_2": 260.0,
+      "phase_3": 255.68,
       "timestamp": 1072912242
     },
     {
       "phase_1": 260.0,
-      "phase_2": 262.82,
-      "phase_3": 259.53,
+      "phase_2": 263.5,
+      "phase_3": 258.0,
       "timestamp": 1072912302
     },
     {
-      "phase_1": 252.2,
-      "phase_2": 262.07,
-      "phase_3": 260.2,
+      "phase_1": 256.1,
+      "phase_2": 264.63,
+      "phase_3": 259.1,
       "timestamp": 1072912362
     },
     {
-      "phase_1": 253.42,
-      "phase_2": 261.97,
-      "phase_3": 261.17,
+      "phase_1": 259.75,
+      "phase_2": 262.27,
+      "phase_3": 258.81,
       "timestamp": 1072912422
     },
     {
-      "phase_1": 255.43,
-      "phase_2": 263.13,
-      "phase_3": 254.9,
+      "phase_1": 262.0,
+      "phase_2": 257.62,
+      "phase_3": 257.28,
       "timestamp": 1072912482
     },
     {
-      "phase_1": 257.52,
-      "phase_2": 265.3,
-      "phase_3": 255.4,
+      "phase_1": 262.21,
+      "phase_2": 253.5,
+      "phase_3": 260.2,
       "timestamp": 1072912542
     },
     {
-      "phase_1": 259.1,
-      "phase_2": 267.63,
-      "phase_3": 256.9,
+      "phase_1": 261.23,
+      "phase_2": 252.0,
+      "phase_3": 261.8,
       "timestamp": 1072912602
     },
     {
-      "phase_1": 259.84,
-      "phase_2": 254.81,
-      "phase_3": 258.7,
+      "phase_1": 260.3,
+      "phase_2": 253.68,
+      "phase_3": 261.73,
       "timestamp": 1072912662
     },
     {
-      "phase_1": 267.4,
-      "phase_2": 252.44,
-      "phase_3": 259.79,
+      "phase_1": 263.15,
+      "phase_2": 255.74,
+      "phase_3": 260.83,
       "timestamp": 1072912722
     },
     {
-      "phase_1": 262.6,
-      "phase_2": 252.11,
-      "phase_3": 260.01,
+      "phase_1": 259.44,
+      "phase_2": 258.22,
+      "phase_3": 260.2,
       "timestamp": 1072912782
     },
     {
-      "phase_1": 260.0,
-      "phase_2": 253.9,
+      "phase_1": 263.36,
+      "phase_2": 260.0,
       "phase_3": 260.0,
       "timestamp": 1072912842
     },
     {
-      "phase_1": 263.52,
-      "phase_2": 256.7,
+      "phase_1": 267.8,
+      "phase_2": 260.47,
       "phase_3": 260.0,
       "timestamp": 1072912902
     },
     {
-      "phase_1": 264.63,
-      "phase_2": 258.91,
-      "phase_3": 259.9,
+      "phase_1": 268.6,
+      "phase_2": 259.8,
+      "phase_3": 254.8,
       "timestamp": 1072912962
     },
     {
-      "phase_1": 262.3,
-      "phase_2": 259.49,
-      "phase_3": 257.0,
+      "phase_1": 265.19,
+      "phase_2": 258.8,
+      "phase_3": 255.99,
       "timestamp": 1072913022
     },
     {
-      "phase_1": 257.6,
-      "phase_2": 254.85,
-      "phase_3": 256.3,
+      "phase_1": 259.8,
+      "phase_2": 254.44,
+      "phase_3": 257.5,
       "timestamp": 1072913082
     },
     {
-      "phase_1": 253.49,
-      "phase_2": 255.4,
-      "phase_3": 260.0,
+      "phase_1": 256.12,
+      "phase_2": 256.9,
+      "phase_3": 260.5,
       "timestamp": 1072913142
     },
     {
-      "phase_1": 252.0,
-      "phase_2": 256.9,
-      "phase_3": 262.4,
+      "phase_1": 256.25,
+      "phase_2": 259.09,
+      "phase_3": 266.23,
       "timestamp": 1072913202
     },
     {
-      "phase_1": 265.19,
-      "phase_2": 258.7,
-      "phase_3": 262.1,
+      "phase_1": 260.8,
+      "phase_2": 260.3,
+      "phase_3": 268.7,
       "timestamp": 1072913262
     },
     {
-      "phase_1": 267.56,
-      "phase_2": 259.8,
-      "phase_3": 259.0,
+      "phase_1": 257.67,
+      "phase_2": 260.43,
+      "phase_3": 267.5,
       "timestamp": 1072913322
     },
     {
-      "phase_1": 267.9,
-      "phase_2": 260.01,
-      "phase_3": 265.0,
+      "phase_1": 255.7,
+      "phase_2": 260.12,
+      "phase_3": 256.02,
       "timestamp": 1072913382
     },
     {
-      "phase_1": 266.11,
+      "phase_1": 255.7,
       "phase_2": 260.0,
-      "phase_3": 268.1,
+      "phase_3": 260.0,
       "timestamp": 1072913442
     },
     {
-      "phase_1": 263.3,
+      "phase_1": 257.3,
       "phase_2": 260.0,
-      "phase_3": 268.8,
+      "phase_3": 262.7,
       "timestamp": 1072913502
     },
     {
-      "phase_1": 261.09,
+      "phase_1": 259.36,
       "phase_2": 265.21,
-      "phase_3": 266.82,
+      "phase_3": 262.78,
       "timestamp": 1072913562
     },
     {
-      "phase_1": 260.5,
-      "phase_2": 264.0,
-      "phase_3": 263.58,
+      "phase_1": 260.46,
+      "phase_2": 264.01,
+      "phase_3": 260.1,
       "timestamp": 1072913622
     },
     {
-      "phase_1": 254.4,
+      "phase_1": 257.28,
       "phase_2": 262.5,
-      "phase_3": 261.5,
+      "phase_3": 256.33,
       "timestamp": 1072913682
     },
     {
-      "phase_1": 256.9,
-      "phase_2": 260.32,
-      "phase_3": 261.9,
+      "phase_1": 260.2,
+      "phase_2": 259.68,
+      "phase_3": 253.9,
       "timestamp": 1072913742
     },
     {
-      "phase_1": 259.09,
-      "phase_2": 262.73,
-      "phase_3": 262.87,
+      "phase_1": 261.8,
+      "phase_2": 253.91,
+      "phase_3": 264.35,
       "timestamp": 1072913802
     },
     {
-      "phase_1": 260.3,
-      "phase_2": 264.71,
-      "phase_3": 265.5,
+      "phase_1": 261.73,
+      "phase_2": 252.3,
+      "phase_3": 263.8,
       "timestamp": 1072913862
     },
     {
-      "phase_1": 260.43,
-      "phase_2": 265.99,
-      "phase_3": 266.5,
+      "phase_1": 260.8,
+      "phase_2": 255.4,
+      "phase_3": 262.43,
       "timestamp": 1072913922
     },
     {
-      "phase_1": 260.12,
-      "phase_2": 263.98,
-      "phase_3": 265.4,
+      "phase_1": 260.16,
+      "phase_2": 260.7,
+      "phase_3": 260.9,
       "timestamp": 1072913982
     },
     {
       "phase_1": 260.0,
-      "phase_2": 260.0,
-      "phase_3": 263.2,
+      "phase_2": 265.73,
+      "phase_3": 260.0,
       "timestamp": 1072914042
     },
     {
       "phase_1": 260.0,
-      "phase_2": 257.32,
-      "phase_3": 261.12,
+      "phase_2": 268.1,
+      "phase_3": 259.88,
       "timestamp": 1072914102
     },
     {
-      "phase_1": 254.59,
-      "phase_2": 257.22,
+      "phase_1": 259.9,
+      "phase_2": 266.8,
       "phase_3": 260.2,
       "timestamp": 1072914162
     },
     {
-      "phase_1": 251.7,
-      "phase_2": 259.92,
-      "phase_3": 260.3,
+      "phase_1": 257.0,
+      "phase_2": 262.59,
+      "phase_3": 260.6,
       "timestamp": 1072914222
     },
     {
-      "phase_1": 252.3,
-      "phase_2": 263.7,
-      "phase_3": 255.8,
+      "phase_1": 256.34,
+      "phase_2": 258.44,
+      "phase_3": 266.4,
       "timestamp": 1072914282
     },
     {
-      "phase_1": 260.0,
-      "phase_2": 266.14,
-      "phase_3": 255.0,
+      "phase_1": 260.5,
+      "phase_2": 257.02,
+      "phase_3": 263.9,
       "timestamp": 1072914342
     },
     {
-      "phase_1": 257.6,
-      "phase_2": 259.0,
-      "phase_3": 256.36,
+      "phase_1": 266.23,
+      "phase_2": 262.87,
+      "phase_3": 261.7,
       "timestamp": 1072914402
     },
     {
-      "phase_1": 257.92,
-      "phase_2": 261.24,
-      "phase_3": 258.47,
+      "phase_1": 268.74,
+      "phase_2": 265.5,
+      "phase_3": 260.46,
       "timestamp": 1072914462
     },
     {
-      "phase_1": 261.0,
-      "phase_2": 262.87,
-      "phase_3": 259.8,
+      "phase_1": 267.5,
+      "phase_2": 266.5,
+      "phase_3": 260.0,
       "timestamp": 1072914522
     },
     {
-      "phase_1": 253.63,
-      "phase_2": 263.2,
+      "phase_1": 254.97,
+      "phase_2": 265.4,
       "phase_3": 260.0,
       "timestamp": 1072914582
     },
     {
-      "phase_1": 254.3,
-      "phase_2": 262.3,
+      "phase_1": 251.9,
+      "phase_2": 263.22,
       "phase_3": 260.0,
       "timestamp": 1072914642
     },
     {
-      "phase_1": 255.7,
-      "phase_2": 260.9,
-      "phase_3": 256.5,
+      "phase_1": 251.2,
+      "phase_2": 261.1,
+      "phase_3": 259.28,
       "timestamp": 1072914702
     },
     {
-      "phase_1": 257.14,
-      "phase_2": 260.0,
-      "phase_3": 257.9,
+      "phase_1": 253.18,
+      "phase_2": 260.2,
+      "phase_3": 255.9,
       "timestamp": 1072914762
     },
     {
-      "phase_1": 257.52,
-      "phase_2": 259.8,
-      "phase_3": 258.8,
+      "phase_1": 256.42,
+      "phase_2": 260.3,
+      "phase_3": 255.0,
       "timestamp": 1072914822
     },
     {
-      "phase_1": 256.36,
-      "phase_2": 261.6,
-      "phase_3": 260.36,
+      "phase_1": 258.5,
+      "phase_2": 258.4,
+      "phase_3": 257.0,
       "timestamp": 1072914882
     },
     {
-      "phase_1": 254.3,
-      "phase_2": 259.3,
-      "phase_3": 262.6,
+      "phase_1": 258.07,
+      "phase_2": 260.73,
+      "phase_3": 259.9,
       "timestamp": 1072914942
     },
     {
-      "phase_1": 265.1,
-      "phase_2": 258.66,
-      "phase_3": 265.15,
+      "phase_1": 254.9,
+      "phase_2": 261.34,
+      "phase_3": 260.9,
       "timestamp": 1072915002
     },
     {
-      "phase_1": 266.6,
-      "phase_2": 259.24,
-      "phase_3": 267.2,
+      "phase_1": 253.45,
+      "phase_2": 260.76,
+      "phase_3": 258.8,
       "timestamp": 1072915062
     },
     {
-      "phase_1": 266.3,
-      "phase_2": 259.9,
-      "phase_3": 266.9,
+      "phase_1": 253.7,
+      "phase_2": 260.1,
+      "phase_3": 253.11,
       "timestamp": 1072915122
     },
     {
-      "phase_1": 264.52,
+      "phase_1": 255.5,
       "phase_2": 260.0,
-      "phase_3": 263.3,
+      "phase_3": 256.7,
       "timestamp": 1072915182
     },
     {
-      "phase_1": 262.3,
+      "phase_1": 257.73,
       "phase_2": 260.0,
       "phase_3": 260.0,
       "timestamp": 1072915242
     },
     {
-      "phase_1": 260.71,
-      "phase_2": 256.5,
-      "phase_3": 258.25,
+      "phase_1": 259.29,
+      "phase_2": 260.7,
+      "phase_3": 261.7,
       "timestamp": 1072915302
     },
     {
-      "phase_1": 260.3,
-      "phase_2": 267.07,
-      "phase_3": 258.82,
+      "phase_1": 259.71,
+      "phase_2": 262.1,
+      "phase_3": 261.18,
       "timestamp": 1072915362
     },
     {
-      "phase_1": 260.6,
-      "phase_2": 266.7,
-      "phase_3": 261.2,
+      "phase_1": 259.36,
+      "phase_2": 261.21,
+      "phase_3": 258.8,
       "timestamp": 1072915422
     },
     {
-      "phase_1": 264.22,
-      "phase_2": 262.44,
-      "phase_3": 263.6,
+      "phase_1": 267.5,
+      "phase_2": 259.64,
+      "phase_3": 256.37,
       "timestamp": 1072915482
     },
     {
-      "phase_1": 265.0,
-      "phase_2": 256.35,
-      "phase_3": 264.8,
+      "phase_1": 266.3,
+      "phase_2": 257.36,
+      "phase_3": 255.2,
       "timestamp": 1072915542
     },
     {
-      "phase_1": 263.64,
-      "phase_2": 251.9,
-      "phase_3": 258.8,
+      "phase_1": 263.8,
+      "phase_2": 254.85,
+      "phase_3": 258.84,
       "timestamp": 1072915602
     },
     {
-      "phase_1": 261.53,
-      "phase_2": 250.98,
-      "phase_3": 257.69,
+      "phase_1": 261.41,
+      "phase_2": 252.77,
+      "phase_3": 258.8,
       "timestamp": 1072915662
     },
     {
-      "phase_1": 260.22,
-      "phase_2": 255.18,
-      "phase_3": 257.64,
+      "phase_1": 260.18,
+      "phase_2": 253.11,
+      "phase_3": 259.1,
       "timestamp": 1072915722
     },
     {
       "phase_1": 260.0,
-      "phase_2": 252.0,
-      "phase_3": 258.3,
+      "phase_2": 256.66,
+      "phase_3": 259.64,
       "timestamp": 1072915782
     },
     {
       "phase_1": 260.0,
-      "phase_2": 250.8,
-      "phase_3": 259.27,
+      "phase_2": 260.0,
+      "phase_3": 260.0,
       "timestamp": 1072915842
     },
     {
-      "phase_1": 263.5,
-      "phase_2": 252.18,
-      "phase_3": 259.89,
+      "phase_1": 255.8,
+      "phase_2": 261.7,
+      "phase_3": 260.01,
       "timestamp": 1072915902
     },
     {
-      "phase_1": 262.07,
-      "phase_2": 255.3,
-      "phase_3": 260.03,
+      "phase_1": 264.14,
+      "phase_2": 261.2,
+      "phase_3": 259.93,
       "timestamp": 1072915962
     },
     {
-      "phase_1": 261.21,
-      "phase_2": 258.0,
-      "phase_3": 267.9,
+      "phase_1": 264.99,
+      "phase_2": 258.8,
+      "phase_3": 255.75,
       "timestamp": 1072916022
     },
     {
-      "phase_1": 259.64,
-      "phase_2": 258.7,
-      "phase_3": 265.8,
+      "phase_1": 263.0,
+      "phase_2": 256.4,
+      "phase_3": 253.7,
       "timestamp": 1072916082
     },
     {
-      "phase_1": 257.36,
-      "phase_2": 257.5,
-      "phase_3": 263.41,
+      "phase_1": 260.08,
+      "phase_2": 255.2,
+      "phase_3": 254.32,
       "timestamp": 1072916142
     },
     {
-      "phase_1": 254.9,
-      "phase_2": 262.8,
-      "phase_3": 261.46,
+      "phase_1": 259.1,
+      "phase_2": 262.84,
+      "phase_3": 256.8,
       "timestamp": 1072916202
     },
     {
-      "phase_1": 252.77,
+      "phase_1": 261.2,
       "phase_2": 264.05,
-      "phase_3": 260.36,
+      "phase_3": 259.1,
       "timestamp": 1072916262
     },
     {
-      "phase_1": 251.7,
+      "phase_1": 264.82,
       "phase_2": 263.7,
-      "phase_3": 260.02,
+      "phase_3": 259.95,
       "timestamp": 1072916322
     },
     {
-      "phase_1": 252.0,
-      "phase_2": 262.17,
+      "phase_1": 268.0,
+      "phase_2": 262.2,
       "phase_3": 260.0,
       "timestamp": 1072916382
     },
     {
-      "phase_1": 253.5,
+      "phase_1": 269.2,
       "phase_2": 260.7,
-      "phase_3": 259.1,
+      "phase_3": 260.9,
       "timestamp": 1072916442
     },
     {
-      "phase_1": 255.7,
-      "phase_2": 260.1,
-      "phase_3": 253.5,
+      "phase_1": 267.82,
+      "phase_2": 260.09,
+      "phase_3": 266.5,
       "timestamp": 1072916502
     },
     {
-      "phase_1": 257.48,
+      "phase_1": 264.74,
       "phase_2": 260.1,
-      "phase_3": 251.02,
+      "phase_3": 269.0,
       "timestamp": 1072916562
     },
     {
-      "phase_1": 257.8,
-      "phase_2": 268.58,
-      "phase_3": 253.1,
+      "phase_1": 261.96,
+      "phase_2": 257.43,
+      "phase_3": 266.9,
       "timestamp": 1072916622
     },
     {
-      "phase_1": 256.54,
-      "phase_2": 268.59,
-      "phase_3": 258.64,
+      "phase_1": 261.3,
+      "phase_2": 260.37,
+      "phase_3": 261.36,
       "timestamp": 1072916682
     },
     {
-      "phase_1": 254.87,
-      "phase_2": 266.43,
-      "phase_3": 263.79,
+      "phase_1": 262.5,
+      "phase_2": 261.6,
+      "phase_3": 256.21,
       "timestamp": 1072916742
     },
     {
-      "phase_1": 257.1,
-      "phase_2": 263.32,
-      "phase_3": 265.19,
+      "phase_1": 262.84,
+      "phase_2": 261.25,
+      "phase_3": 254.81,
       "timestamp": 1072916802
     },
     {
-      "phase_1": 255.51,
-      "phase_2": 260.92,
-      "phase_3": 262.8,
+      "phase_1": 264.05,
+      "phase_2": 260.41,
+      "phase_3": 257.16,
       "timestamp": 1072916862
     },
     {
-      "phase_1": 255.7,
-      "phase_2": 260.05,
-      "phase_3": 254.5,
+      "phase_1": 263.7,
+      "phase_2": 260.03,
+      "phase_3": 251.02,
       "timestamp": 1072916922
     },
     {
-      "phase_1": 257.29,
+      "phase_1": 262.2,
       "phase_2": 260.0,
-      "phase_3": 257.54,
+      "phase_3": 252.07,
       "timestamp": 1072916982
     },
     {
-      "phase_1": 258.96,
-      "phase_2": 260.9,
-      "phase_3": 260.0,
+      "phase_1": 260.7,
+      "phase_2": 260.0,
+      "phase_3": 254.35,
       "timestamp": 1072917042
     },
     {
-      "phase_1": 259.9,
-      "phase_2": 260.85,
-      "phase_3": 260.92,
+      "phase_1": 260.1,
+      "phase_2": 256.0,
+      "phase_3": 256.9,
       "timestamp": 1072917102
     },
     {
-      "phase_1": 259.97,
-      "phase_2": 260.7,
-      "phase_3": 260.2,
+      "phase_1": 260.1,
+      "phase_2": 254.14,
+      "phase_3": 258.42,
       "timestamp": 1072917162
     },
     {
       "phase_1": 252.1,
-      "phase_2": 260.97,
-      "phase_3": 258.55,
+      "phase_2": 255.8,
+      "phase_3": 258.36,
       "timestamp": 1072917222
     },
     {
       "phase_1": 254.19,
-      "phase_2": 262.24,
-      "phase_3": 257.32,
+      "phase_2": 260.6,
+      "phase_3": 257.2,
       "timestamp": 1072917282
     },
     {
-      "phase_1": 256.6,
-      "phase_2": 264.5,
-      "phase_3": 257.44,
+      "phase_1": 256.59,
+      "phase_2": 265.8,
+      "phase_3": 259.97,
       "timestamp": 1072917342
     },
     {
       "phase_1": 258.54,
-      "phase_2": 267.0,
-      "phase_3": 258.3,
+      "phase_2": 268.6,
+      "phase_3": 257.7,
       "timestamp": 1072917402
     },
     {
       "phase_1": 259.6,
-      "phase_2": 268.7,
-      "phase_3": 259.39,
+      "phase_2": 268.2,
+      "phase_3": 257.15,
       "timestamp": 1072917462
     },
     {
-      "phase_1": 259.98,
-      "phase_2": 258.87,
-      "phase_3": 260.04,
+      "phase_1": 260.0,
+      "phase_2": 267.1,
+      "phase_3": 258.0,
       "timestamp": 1072917522
     },
     {
       "phase_1": 260.0,
-      "phase_2": 255.56,
-      "phase_3": 260.1,
+      "phase_2": 268.7,
+      "phase_3": 259.2,
       "timestamp": 1072917582
     }
   ]

@@ -1,63 +1,63 @@
 {
   "data": [
     {
-      "phase_1": 10.0,
+      "phase_1": 11.0,
       "phase_2": 10.0,
-      "phase_3": 8.4,
+      "phase_3": 9.0,
       "timestamp": 1072911642
     },
     {
-      "phase_1": 10.0,
+      "phase_1": 11.0,
       "phase_2": 10.0,
-      "phase_3": 8.0,
+      "phase_3": 9.0,
       "timestamp": 1072911702
     },
     {
       "phase_1": 10.0,
-      "phase_2": 11.0,
-      "phase_3": 9.0,
+      "phase_2": 8.5,
+      "phase_3": 9.4,
       "timestamp": 1072911762
     },
     {
       "phase_1": 10.0,
-      "phase_2": 12.0,
-      "phase_3": 9.0,
+      "phase_2": 8.0,
+      "phase_3": 9.5,
       "timestamp": 1072911822
     },
     {
-      "phase_1": 9.7,
-      "phase_2": 12.0,
-      "phase_3": 10.0,
+      "phase_1": 11.0,
+      "phase_2": 9.0,
+      "phase_3": 9.3,
       "timestamp": 1072911882
     },
     {
-      "phase_1": 9.0,
-      "phase_2": 9.9,
-      "phase_3": 10.0,
+      "phase_1": 11.0,
+      "phase_2": 10.0,
+      "phase_3": 9.0,
       "timestamp": 1072911942
     },
     {
-      "phase_1": 9.3,
-      "phase_2": 9.0,
+      "phase_1": 10.0,
+      "phase_2": 10.0,
       "phase_3": 10.0,
       "timestamp": 1072912002
     },
     {
       "phase_1": 10.0,
-      "phase_2": 9.0,
+      "phase_2": 10.0,
       "phase_3": 10.0,
       "timestamp": 1072912062
     },
     {
       "phase_1": 10.0,
-      "phase_2": 9.0,
-      "phase_3": 9.0,
+      "phase_2": 10.0,
+      "phase_3": 11.0,
       "timestamp": 1072912122
     },
     {
       "phase_1": 10.0,
       "phase_2": 11.0,
-      "phase_3": 9.0,
+      "phase_3": 11.0,
       "timestamp": 1072912182
     },
     {
@@ -73,7 +73,7 @@
       "timestamp": 1072912302
     },
     {
-      "phase_1": 10.0,
+      "phase_1": 11.0,
       "phase_2": 11.0,
       "phase_3": 10.0,
       "timestamp": 1072912362
@@ -85,517 +85,517 @@
       "timestamp": 1072912422
     },
     {
-      "phase_1": 11.0,
+      "phase_1": 10.0,
       "phase_2": 10.0,
-      "phase_3": 9.2,
+      "phase_3": 11.0,
       "timestamp": 1072912482
     },
     {
-      "phase_1": 9.9,
+      "phase_1": 10.0,
       "phase_2": 10.0,
-      "phase_3": 9.0,
+      "phase_3": 11.0,
       "timestamp": 1072912542
     },
     {
-      "phase_1": 9.5,
-      "phase_2": 9.4,
-      "phase_3": 9.0,
+      "phase_1": 9.0,
+      "phase_2": 11.0,
+      "phase_3": 11.0,
       "timestamp": 1072912602
     },
     {
       "phase_1": 9.0,
-      "phase_2": 9.0,
-      "phase_3": 9.7,
+      "phase_2": 11.0,
+      "phase_3": 10.0,
       "timestamp": 1072912662
     },
     {
       "phase_1": 8.8,
-      "phase_2": 9.0,
+      "phase_2": 11.0,
       "phase_3": 10.0,
       "timestamp": 1072912722
     },
     {
-      "phase_1": 11.0,
-      "phase_2": 9.0,
+      "phase_1": 10.0,
+      "phase_2": 11.0,
       "phase_3": 10.0,
       "timestamp": 1072912782
     },
     {
-      "phase_1": 12.0,
-      "phase_2": 9.4,
+      "phase_1": 11.0,
+      "phase_2": 10.0,
       "phase_3": 10.0,
       "timestamp": 1072912842
     },
     {
       "phase_1": 12.0,
-      "phase_2": 9.8,
-      "phase_3": 9.5,
+      "phase_2": 10.0,
+      "phase_3": 11.0,
       "timestamp": 1072912902
     },
     {
       "phase_1": 11.0,
       "phase_2": 10.0,
-      "phase_3": 10.0,
+      "phase_3": 8.6,
       "timestamp": 1072912962
     },
     {
       "phase_1": 11.0,
-      "phase_2": 9.9,
-      "phase_3": 10.0,
+      "phase_2": 10.0,
+      "phase_3": 9.0,
       "timestamp": 1072913022
     },
     {
       "phase_1": 10.0,
-      "phase_2": 11.0,
+      "phase_2": 9.7,
       "phase_3": 10.0,
       "timestamp": 1072913082
     },
     {
-      "phase_1": 10.0,
-      "phase_2": 11.0,
+      "phase_1": 9.0,
+      "phase_2": 10.0,
       "phase_3": 11.0,
       "timestamp": 1072913142
     },
     {
-      "phase_1": 11.0,
+      "phase_1": 9.4,
       "phase_2": 10.0,
-      "phase_3": 11.0,
+      "phase_3": 12.0,
       "timestamp": 1072913202
     },
     {
-      "phase_1": 11.0,
+      "phase_1": 8.9,
       "phase_2": 10.0,
-      "phase_3": 11.0,
+      "phase_3": 12.0,
       "timestamp": 1072913262
     },
     {
-      "phase_1": 10.0,
+      "phase_1": 8.7,
       "phase_2": 10.0,
       "phase_3": 11.0,
       "timestamp": 1072913322
     },
     {
-      "phase_1": 10.0,
+      "phase_1": 8.9,
       "phase_2": 10.0,
-      "phase_3": 11.0,
+      "phase_3": 12.0,
       "timestamp": 1072913382
     },
     {
-      "phase_1": 10.0,
+      "phase_1": 9.4,
       "phase_2": 10.0,
-      "phase_3": 10.0,
+      "phase_3": 12.0,
       "timestamp": 1072913442
     },
     {
-      "phase_1": 10.0,
-      "phase_2": 9.0,
-      "phase_3": 9.7,
+      "phase_1": 9.8,
+      "phase_2": 10.0,
+      "phase_3": 12.0,
       "timestamp": 1072913502
     },
     {
       "phase_1": 10.0,
-      "phase_2": 11.0,
-      "phase_3": 10.0,
+      "phase_2": 10.0,
+      "phase_3": 11.0,
       "timestamp": 1072913562
     },
     {
       "phase_1": 10.0,
-      "phase_2": 11.0,
+      "phase_2": 10.0,
       "phase_3": 10.0,
       "timestamp": 1072913622
     },
     {
-      "phase_1": 8.5,
-      "phase_2": 11.0,
-      "phase_3": 11.0,
+      "phase_1": 11.0,
+      "phase_2": 10.0,
+      "phase_3": 10.0,
       "timestamp": 1072913682
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 10.0,
-      "phase_3": 11.0,
-      "timestamp": 1072913742
-    },
-    {
-      "phase_1": 9.2,
-      "phase_2": 9.8,
-      "phase_3": 9.0,
-      "timestamp": 1072913802
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 10.0,
-      "phase_3": 9.1,
-      "timestamp": 1072913862
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 8.0,
-      "phase_3": 9.0,
-      "timestamp": 1072913922
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 8.4,
-      "phase_3": 9.5,
-      "timestamp": 1072913982
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 8.7,
-      "phase_3": 9.8,
-      "timestamp": 1072914042
-    },
-    {
-      "phase_1": 9.3,
-      "phase_2": 9.0,
-      "phase_3": 10.0,
-      "timestamp": 1072914102
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 9.0,
-      "phase_3": 10.0,
-      "timestamp": 1072914162
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 10.0,
-      "phase_3": 12.0,
-      "timestamp": 1072914222
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 9.0,
-      "phase_3": 11.0,
-      "timestamp": 1072914282
     },
     {
       "phase_1": 11.0,
       "phase_2": 9.0,
-      "phase_3": 11.0,
-      "timestamp": 1072914342
-    },
-    {
-      "phase_1": 12.0,
-      "phase_2": 10.0,
       "phase_3": 10.0,
-      "timestamp": 1072914402
+      "timestamp": 1072913742
     },
     {
-      "phase_1": 12.0,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072914462
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072914522
-    },
-    {
-      "phase_1": 8.4,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072914582
-    },
-    {
-      "phase_1": 8.2,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072914642
-    },
-    {
-      "phase_1": 8.4,
-      "phase_2": 10.0,
-      "phase_3": 9.0,
-      "timestamp": 1072914702
-    },
-    {
-      "phase_1": 9.1,
-      "phase_2": 10.0,
-      "phase_3": 8.6,
-      "timestamp": 1072914762
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 9.0,
-      "phase_3": 8.9,
-      "timestamp": 1072914822
-    },
-    {
-      "phase_1": 9.7,
-      "phase_2": 8.7,
-      "phase_3": 9.0,
-      "timestamp": 1072914882
-    },
-    {
-      "phase_1": 10.0,
+      "phase_1": 11.0,
       "phase_2": 9.0,
       "phase_3": 10.0,
-      "timestamp": 1072914942
-    },
-    {
-      "phase_1": 9.8,
-      "phase_2": 9.0,
-      "phase_3": 10.0,
-      "timestamp": 1072915002
-    },
-    {
-      "phase_1": 9.5,
-      "phase_2": 9.8,
-      "phase_3": 9.0,
-      "timestamp": 1072915062
-    },
-    {
-      "phase_1": 9.5,
-      "phase_2": 10.0,
-      "phase_3": 11.0,
-      "timestamp": 1072915122
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072915182
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072915242
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 10.0,
-      "phase_3": 9.8,
-      "timestamp": 1072915302
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072915362
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072915422
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 10.0,
-      "phase_3": 11.0,
-      "timestamp": 1072915482
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 11.0,
-      "phase_3": 9.6,
-      "timestamp": 1072915542
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 11.0,
-      "phase_3": 9.4,
-      "timestamp": 1072915602
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 12.0,
-      "phase_3": 10.0,
-      "timestamp": 1072915662
+      "timestamp": 1072913802
     },
     {
       "phase_1": 10.0,
       "phase_2": 8.6,
-      "phase_3": 10.0,
-      "timestamp": 1072915722
+      "phase_3": 9.8,
+      "timestamp": 1072913862
     },
     {
       "phase_1": 10.0,
       "phase_2": 8.3,
       "phase_3": 10.0,
-      "timestamp": 1072915782
+      "timestamp": 1072913922
     },
     {
       "phase_1": 10.0,
       "phase_2": 8.4,
       "phase_3": 10.0,
-      "timestamp": 1072915842
-    },
-    {
-      "phase_1": 9.2,
-      "phase_2": 8.9,
-      "phase_3": 10.0,
-      "timestamp": 1072915902
-    },
-    {
-      "phase_1": 8.8,
-      "phase_2": 10.0,
-      "phase_3": 11.0,
-      "timestamp": 1072915962
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 10.0,
-      "phase_3": 11.0,
-      "timestamp": 1072916022
+      "timestamp": 1072913982
     },
     {
       "phase_1": 10.0,
-      "phase_2": 9.8,
-      "phase_3": 11.0,
-      "timestamp": 1072916082
+      "phase_2": 8.7,
+      "phase_3": 10.0,
+      "timestamp": 1072914042
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 9.1,
+      "phase_3": 10.0,
+      "timestamp": 1072914102
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 9.0,
+      "phase_3": 10.0,
+      "timestamp": 1072914162
     },
     {
       "phase_1": 11.0,
       "phase_2": 10.0,
+      "phase_3": 12.0,
+      "timestamp": 1072914222
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 9.3,
+      "phase_3": 12.0,
+      "timestamp": 1072914282
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 9.0,
+      "phase_3": 11.0,
+      "timestamp": 1072914342
+    },
+    {
+      "phase_1": 9.8,
+      "phase_2": 9.0,
+      "phase_3": 11.0,
+      "timestamp": 1072914402
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 9.0,
       "phase_3": 10.0,
+      "timestamp": 1072914462
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 9.1,
+      "phase_3": 10.0,
+      "timestamp": 1072914522
+    },
+    {
+      "phase_1": 9.0,
+      "phase_2": 9.0,
+      "phase_3": 10.0,
+      "timestamp": 1072914582
+    },
+    {
+      "phase_1": 9.0,
+      "phase_2": 9.8,
+      "phase_3": 10.0,
+      "timestamp": 1072914642
+    },
+    {
+      "phase_1": 8.6,
+      "phase_2": 10.0,
+      "phase_3": 10.0,
+      "timestamp": 1072914702
+    },
+    {
+      "phase_1": 9.0,
+      "phase_2": 10.0,
+      "phase_3": 10.0,
+      "timestamp": 1072914762
+    },
+    {
+      "phase_1": 9.9,
+      "phase_2": 8.3,
+      "phase_3": 10.0,
+      "timestamp": 1072914822
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 8.3,
+      "phase_3": 10.0,
+      "timestamp": 1072914882
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 8.7,
+      "phase_3": 11.0,
+      "timestamp": 1072914942
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 9.3,
+      "phase_3": 11.0,
+      "timestamp": 1072915002
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 9.8,
+      "phase_3": 12.0,
+      "timestamp": 1072915062
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 10.0,
+      "phase_3": 12.0,
+      "timestamp": 1072915122
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 10.0,
+      "phase_3": 12.0,
+      "timestamp": 1072915182
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 10.0,
+      "phase_3": 11.0,
+      "timestamp": 1072915242
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 11.0,
+      "phase_3": 11.0,
+      "timestamp": 1072915302
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 11.0,
+      "phase_3": 10.0,
+      "timestamp": 1072915362
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 11.0,
+      "phase_3": 10.0,
+      "timestamp": 1072915422
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 11.0,
+      "phase_3": 11.0,
+      "timestamp": 1072915482
+    },
+    {
+      "phase_1": 9.7,
+      "phase_2": 10.0,
+      "phase_3": 11.0,
+      "timestamp": 1072915542
+    },
+    {
+      "phase_1": 9.7,
+      "phase_2": 10.0,
+      "phase_3": 10.0,
+      "timestamp": 1072915602
+    },
+    {
+      "phase_1": 9.9,
+      "phase_2": 11.0,
+      "phase_3": 10.0,
+      "timestamp": 1072915662
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 8.2,
+      "phase_3": 10.0,
+      "timestamp": 1072915722
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 8.4,
+      "phase_3": 10.0,
+      "timestamp": 1072915782
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 8.9,
+      "phase_3": 10.0,
+      "timestamp": 1072915842
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 9.4,
+      "phase_3": 10.0,
+      "timestamp": 1072915902
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 9.7,
+      "phase_3": 11.0,
+      "timestamp": 1072915962
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 9.7,
+      "phase_3": 12.0,
+      "timestamp": 1072916022
+    },
+    {
+      "phase_1": 10.0,
+      "phase_2": 9.0,
+      "phase_3": 12.0,
+      "timestamp": 1072916082
+    },
+    {
+      "phase_1": 8.8,
+      "phase_2": 11.0,
+      "phase_3": 11.0,
       "timestamp": 1072916142
     },
     {
-      "phase_1": 12.0,
-      "phase_2": 9.5,
+      "phase_1": 8.3,
+      "phase_2": 10.0,
       "phase_3": 10.0,
       "timestamp": 1072916202
     },
     {
-      "phase_1": 12.0,
-      "phase_2": 9.4,
+      "phase_1": 8.4,
+      "phase_2": 10.0,
       "phase_3": 12.0,
       "timestamp": 1072916262
     },
     {
       "phase_1": 10.0,
-      "phase_2": 9.6,
+      "phase_2": 10.0,
       "phase_3": 11.0,
       "timestamp": 1072916322
     },
     {
       "phase_1": 9.1,
-      "phase_2": 9.8,
+      "phase_2": 10.0,
       "phase_3": 11.0,
       "timestamp": 1072916382
     },
     {
       "phase_1": 9.0,
       "phase_2": 10.0,
-      "phase_3": 11.0,
+      "phase_3": 8.8,
       "timestamp": 1072916442
     },
     {
       "phase_1": 9.0,
       "phase_2": 10.0,
-      "phase_3": 12.0,
+      "phase_3": 8.0,
       "timestamp": 1072916502
     },
     {
       "phase_1": 9.6,
-      "phase_2": 11.0,
-      "phase_3": 12.0,
+      "phase_2": 9.4,
+      "phase_3": 8.0,
       "timestamp": 1072916562
     },
     {
       "phase_1": 10.0,
-      "phase_2": 12.0,
-      "phase_3": 11.0,
+      "phase_2": 8.6,
+      "phase_3": 9.0,
       "timestamp": 1072916622
     },
     {
       "phase_1": 10.0,
-      "phase_2": 12.0,
+      "phase_2": 8.0,
       "phase_3": 10.0,
       "timestamp": 1072916682
     },
     {
       "phase_1": 10.0,
-      "phase_2": 11.0,
+      "phase_2": 8.9,
       "phase_3": 10.0,
       "timestamp": 1072916742
     },
     {
       "phase_1": 10.0,
       "phase_2": 10.0,
-      "phase_3": 11.0,
+      "phase_3": 9.0,
       "timestamp": 1072916802
     },
     {
-      "phase_1": 11.0,
-      "phase_2": 9.0,
-      "phase_3": 8.9,
+      "phase_1": 10.0,
+      "phase_2": 12.0,
+      "phase_3": 12.0,
       "timestamp": 1072916862
     },
     {
       "phase_1": 10.0,
-      "phase_2": 9.0,
-      "phase_3": 8.5,
+      "phase_2": 11.0,
+      "phase_3": 12.0,
       "timestamp": 1072916922
     },
     {
       "phase_1": 10.0,
-      "phase_2": 9.1,
-      "phase_3": 8.5,
+      "phase_2": 11.0,
+      "phase_3": 11.0,
       "timestamp": 1072916982
     },
     {
       "phase_1": 10.0,
-      "phase_2": 9.0,
-      "phase_3": 9.0,
+      "phase_2": 11.0,
+      "phase_3": 11.0,
       "timestamp": 1072917042
-    },
-    {
-      "phase_1": 10.0,
-      "phase_2": 8.4,
-      "phase_3": 9.0,
-      "timestamp": 1072917102
-    },
-    {
-      "phase_1": 9.0,
-      "phase_2": 8.5,
-      "phase_3": 10.0,
-      "timestamp": 1072917162
-    },
-    {
-      "phase_1": 8.0,
-      "phase_2": 9.1,
-      "phase_3": 10.0,
-      "timestamp": 1072917222
-    },
-    {
-      "phase_1": 8.0,
-      "phase_2": 9.6,
-      "phase_3": 9.5,
-      "timestamp": 1072917282
-    },
-    {
-      "phase_1": 8.9,
-      "phase_2": 10.0,
-      "phase_3": 9.0,
-      "timestamp": 1072917342
-    },
-    {
-      "phase_1": 9.6,
-      "phase_2": 9.0,
-      "phase_3": 9.0,
-      "timestamp": 1072917402
-    },
-    {
-      "phase_1": 11.0,
-      "phase_2": 10.0,
-      "phase_3": 10.0,
-      "timestamp": 1072917462
     },
     {
       "phase_1": 10.0,
       "phase_2": 11.0,
       "phase_3": 10.0,
-      "timestamp": 1072917522
+      "timestamp": 1072917102
+    },
+    {
+      "phase_1": 9.4,
+      "phase_2": 10.0,
+      "phase_3": 10.0,
+      "timestamp": 1072917162
+    },
+    {
+      "phase_1": 9.0,
+      "phase_2": 10.0,
+      "phase_3": 10.0,
+      "timestamp": 1072917222
+    },
+    {
+      "phase_1": 8.5,
+      "phase_2": 11.0,
+      "phase_3": 11.0,
+      "timestamp": 1072917282
+    },
+    {
+      "phase_1": 8.9,
+      "phase_2": 11.0,
+      "phase_3": 11.0,
+      "timestamp": 1072917342
     },
     {
       "phase_1": 10.0,
+      "phase_2": 12.0,
+      "phase_3": 10.0,
+      "timestamp": 1072917402
+    },
+    {
+      "phase_1": 12.0,
+      "phase_2": 10.0,
+      "phase_3": 10.0,
+      "timestamp": 1072917462
+    },
+    {
+      "phase_1": 11.0,
+      "phase_2": 11.0,
+      "phase_3": 10.0,
+      "timestamp": 1072917522
+    },
+    {
+      "phase_1": 11.0,
       "phase_2": 11.0,
       "phase_3": 10.0,
       "timestamp": 1072917582
