@@ -1,19 +1,19 @@
 #[cfg(test)]
 use crate::parse_datetime;
 use super::*;
-#[test]
-fn test_telegram_ver_pass() {
-    let input = "12";
-    let result = telegram_ver(input);
-    assert_eq!(result, Ok(Versions::V12));
-}
-
-#[test]
-fn test_telegram_ver_fail() {
-    let input = "11";
-    let result = telegram_ver(input);
-    assert_ne!(result, Ok(Versions::V12));
-}
+// #[test]
+// fn test_telegram_ver_pass() {
+//     let input = "12";
+//     let result = telegram_ver(input);
+//     assert_eq!(result, Ok(Versions::V12));
+// }
+//
+// #[test]
+// fn test_telegram_ver_fail() {
+//     let input = "11";
+//     let result = telegram_ver(input);
+//     assert_ne!(result, Ok(Versions::V12));
+// }
 
 #[test]
 fn test_version_extension_pass() {

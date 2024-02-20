@@ -14,7 +14,7 @@ use tudelft_dsmr_output_generator::{GraphBuilder, Graphs, date_to_timestamp};
 /// Contains `MainError`, and code to convert `PlotError` and `io::Error` into a `MainError`
 /// https://docs.rs/tudelft-dsmr-output-generator/0.1.3/tudelft_dsmr_output_generator/index.html
 mod error;
-// mod test;
+mod test;
 
 #[derive(Debug, Display)]
 #[derive(PartialEq)]
@@ -698,5 +698,7 @@ fn main() -> Result<(), MainError> {
     Ok(())
 }
 
+// sudo apt-get update && sudo apt-get install libssl-dev pkg-config cmake zlib1g-dev
+// RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
 // cargo tarpaulin --out Html --all-features --output-dir target/tarpaulin
 // cargo run < examples/good_sequences/should_parse_3_recursive.dsmr
