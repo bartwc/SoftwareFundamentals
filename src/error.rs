@@ -13,6 +13,9 @@ pub enum MainError {
     IoError(io::Error),
     PlotError(PlotError),
     VersionError(String),
+    ExtensionError(String),
+    KeyError(String),
+    // FloatError(String),
 }
 
 // Define how to print out the error when it occurs based on the type of error it is
@@ -22,6 +25,9 @@ impl Display for MainError {
             MainError::IoError(e) => write!(f, "IO Error Occurred: {e}"), // Follow this example
             MainError::PlotError(e) => write!(f, "Plot Error Occurred: {e}"),
             MainError::VersionError(e) => write!(f, "Version Error Occurred: {e}"),
+            MainError::ExtensionError(e) => write!(f, "Extension Error Occurred: {e}"),
+            MainError::KeyError(e) => write!(f, "Key Error Occurred: {e}"),
+            // MainError::FloatError(e) => write!(f, "Float Error Occurred: {e}"),
         }
     }
 }

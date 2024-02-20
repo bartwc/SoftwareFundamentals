@@ -16,23 +16,19 @@ use tudelft_dsmr_output_generator::{GraphBuilder, Graphs, date_to_timestamp};
 mod error;
 mod test;
 
-#[derive(Debug, Display)]
-#[derive(PartialEq)]
+#[derive(Debug, PartialEq, Display)]
 enum Versions {
     V10,
     V12,
 }
 
-#[derive(Debug)]
-#[derive(PartialEq)]
+#[derive(Debug, PartialEq)]
 enum Extensions {
     Gas,
     Recursive,
     GasRecursive,
 }
-#[derive(Debug)]
-#[derive(PartialEq)]
-
+#[derive(Debug, PartialEq)]
 enum Keys {
     Start, // 1.1.0
     Date, // 2.1
@@ -67,9 +63,7 @@ enum Keys {
 //     version: Option<Versions>, // None if no header found yet.
 //     extensions: Vec<Extensions> 
 // }
-#[derive(Debug)]
-#[derive(Default)]
-#[derive(PartialEq)]
+#[derive(Default, Debug, PartialEq)]
 struct Telegram{
     telegram_version: String, // 0.0 Option<Vec<String>>
     telegram_extensions: String, // 0.0+ Option<Vec<String>>
@@ -99,9 +93,7 @@ struct Telegram{
     // ChildTelegram2: ChildTelegram2, // 1.1.2
     // ChildTelegram3: ChildTelegram3, // 1.1.3
 }
-#[derive(Debug)]
-#[derive(Default)]
-#[derive(PartialEq)]
+#[derive(Default, Debug, PartialEq)]
 struct ChildTelegram1 {
     // telegram_version: String, // 0.0
     // telegram_extensions: String, // 0.0+
@@ -133,15 +125,15 @@ fn telegram_ver(telegram_version: &str) -> Result<Versions, MainError> {
     match telegram_version {
         "10" => Ok(Versions::V10),
         "12" => Ok(Versions::V12),
-        _ => Err(MainError::VersionError("Neither Version 10 or 12".to_string())),
+        other => Err(MainError::VersionError(format!("Neither Version 10 or 12: {other}"))), // new
     }
 }
-fn version_ext(version_extension: &str) -> Result<Extensions, &'static str> {
+fn version_ext(version_extension: &str) -> Result<Extensions, MainError> { //&'static str
     match version_extension {
         "g\r" => Ok(Extensions::Gas),
         "r\r" => Ok(Extensions::Recursive),
         "gr" => Ok(Extensions::GasRecursive),
-        _ => Err("Invalid Version Extension or No Version Extension"),
+        other => Err(MainError::ExtensionError(format!("Invalid Version Extension or No Version Extension: {other}"))),
     }
 }
 fn process_lines(lines: &str) -> (String, String) {
@@ -154,7 +146,7 @@ fn process_lines(lines: &str) -> (String, String) {
         ("LineBreak".to_string(), "".to_string())
     }
 }
-fn version_key(version_key: &str) -> Result<Keys, String> {
+fn version_key(version_key: &str) -> Result<Keys, String> { //String
     match version_key {
         "1.1.0" => Ok(Keys::Start),
         "2.1" => Ok(Keys::Date),
@@ -184,7 +176,7 @@ fn version_key(version_key: &str) -> Result<Keys, String> {
         "1.2.1" => Ok(Keys::EndChildTelegram1),
         // "1.2.2" => Ok(Keys::EndChildTelegram2),
         // "1.2.3" => Ok(Keys::EndChildTelegram3),
-        other => Err(format!("Authentication Failed: {other}")),
+        other => Err(MainError::KeyError(format!("Invalid Key: {other}")).to_string()),
         // _ => Err("Authentication Failed"),
     }
 }
